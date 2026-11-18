@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 345" role="img" aria-labelledby="gp-title gp-desc">
+  <title id="gp-title">MagLink 24-Month R&amp;D Work Plan Gantt Chart</title>
+  <desc id="gp-desc">Work package timeline across 24 months from system requirements through bimodal transition design, adaptive suspension co-design, corridor simulation, and TRL 4 validation.</desc>
+  <defs>
+    <style>
+      .bg { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; }
+      .title { font-family: system-ui, -apple-system, sans-serif; font-size: 16px; font-weight: 700; fill: #0f172a; }
+      .subtitle { font-family: system-ui, -apple-system, sans-serif; font-size: 12.5px; fill: #475569; }
+      .lbl { font-family: system-ui, -apple-system, sans-serif; font-size: 12.5px; font-weight: 600; fill: #1e293b; }
+      .val { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; fill: #475569; }
+      .grid { stroke: #e2e8f0; stroke-width: 1; }
+      .axis { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; fill: #64748b; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="1" y="1" width="978" height="343" rx="14"/>
+  <text class="title" x="28" y="34">24-Month R&amp;D Execution Timeline (TRL 2 &#8594; TRL 4)</text>
+  <text class="subtitle" x="28" y="54">Phased work packages linking chassis mechanics, active suspension control, smart-stop dispatch, and validation.</text>
+
+  <line class="grid" x1="265.0" y1="72" x2="265.0" y2="306"/><text class="axis" x="265.0" y="324" text-anchor="middle">M1</text><line class="grid" x1="390.0" y1="72" x2="390.0" y2="306"/><text class="axis" x="390.0" y="324" text-anchor="middle">M6</text><line class="grid" x1="515.0" y1="72" x2="515.0" y2="306"/><text class="axis" x="515.0" y="324" text-anchor="middle">M12</text><line class="grid" x1="640.0" y1="72" x2="640.0" y2="306"/><text class="axis" x="640.0" y="324" text-anchor="middle">M18</text><line class="grid" x1="765.0" y1="72" x2="765.0" y2="306"/><text class="axis" x="765.0" y="324" text-anchor="middle">M24</text>
+  <text class="lbl" x="251" y="103" text-anchor="end">WP1 · System Specs &amp; Corridor Req.</text><rect x="265.0" y="84" width="125.0" height="28" rx="6" fill="#2563eb"/><text class="val" x="779" y="103">M1–M6 · Core Architecture Team</text><text class="lbl" x="251" y="147" text-anchor="end">WP2 · Bimodal Transition &amp; Chassis</text><rect x="327.5" y="128" width="250.0" height="28" rx="6" fill="#0284c7"/><text class="val" x="779" y="147">M4–M15 · Mechanical Integration</text><text class="lbl" x="251" y="191" text-anchor="end">WP3 · Adaptive Suspension &amp; Airgap</text><rect x="348.3" y="172" width="250.0" height="28" rx="6" fill="#0d9488"/><text class="val" x="779" y="191">M5–M16 · Suspension Control Partner</text><text class="lbl" x="251" y="235" text-anchor="end">WP4 · V2I Skip-Stop &amp; Corridor Sim</text><rect x="452.5" y="216" width="250.0" height="28" rx="6" fill="#6366f1"/><text class="val" x="779" y="235">M10–M21 · Autonomy &amp; LCA Modeling</text><text class="lbl" x="251" y="279" text-anchor="end">WP5 · Rig Integration &amp; TRL 4 Val.</text><rect x="556.7" y="260" width="208.3" height="28" rx="6" fill="#0f4c81"/><text class="val" x="779" y="279">M15–M24 · Full Consortium V&amp;V</text>
+</svg>
