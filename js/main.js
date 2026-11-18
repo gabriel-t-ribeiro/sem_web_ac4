@@ -109,39 +109,48 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.querySelectorAll(".hero, .cta-stage").forEach(initHeroField);
-  document.querySelectorAll(".cta-stage").forEach(initCtaScrollScale);
+  document.querySelectorAll(".hero-visual-wide, .cta-stage").forEach(initScrollGrow);
   document.querySelectorAll(".footer-wordmark").forEach(initWordmarkFloat);
 });
 
 /**
- * Smoothly scales the pre-footer interactive showcase card from 0.95 to 1.0 as it enters view.
+ * First-entry scroll-driven grow & lift animation (scale 0.88 -> 1.0, lift 20px -> 0px),
+ * respecting prefers-reduced-motion.
  */
-function initCtaScrollScale(stage) {
+function initScrollGrow(el) {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    stage.style.setProperty("--cta-scale", "1");
+    el.style.setProperty("--scroll-scale", "1");
+    el.style.setProperty("--scroll-lift", "0px");
     return;
   }
 
   let ticking = false;
-  const updateScale = () => {
+  let maxProgress = 0;
+
+  const update = () => {
     ticking = false;
-    const rect = stage.getBoundingClientRect();
+    const rect = el.getBoundingClientRect();
     const vh = window.innerHeight || 800;
-    const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.65)));
-    const scale = 0.94 + progress * 0.06;
-    stage.style.setProperty("--cta-scale", scale.toFixed(4));
+    const raw = Math.max(0, Math.min(1, (vh * 0.94 - rect.top) / (vh * 0.64)));
+    const eased = 1 - Math.pow(1 - raw, 2);
+    maxProgress = Math.max(maxProgress, eased);
+
+    const scale = 0.88 + maxProgress * 0.12;
+    const lift = (1 - maxProgress) * 20;
+    el.style.setProperty("--scroll-scale", scale.toFixed(4));
+    el.style.setProperty("--scroll-lift", `${lift.toFixed(2)}px`);
   };
 
   const onScroll = () => {
     if (!ticking) {
       ticking = true;
-      window.requestAnimationFrame(updateScale);
+      window.requestAnimationFrame(update);
     }
   };
 
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll, { passive: true });
-  updateScale();
+  update();
 }
 
 /**
@@ -271,8 +280,16 @@ function initHeroField(hero) {
   let isVisible = true;
   let pointerInside = false;
   let hasMovedPointer = false;
+  let pointerDirty = false;
+  let isAutonomous = true;
+  let lastMoveTimeMs = 0;
+  let roamStartMs = 0;
+  let lastX = 0;
+  let lastY = 0;
+  let roamOriginX = 0;
+  let roamOriginY = 0;
 
-  const pointer = { x: 0, y: 0, smoothX: 0, smoothY: 0, active: 0 };
+  const pointer = { x: 0, y: 0, smoothX: 0, smoothY: 0, active: 0.88 };
 
   function buildParticles() {
     const area = width * height;
@@ -314,10 +331,19 @@ function initHeroField(hero) {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     if (!hasMovedPointer) {
-      pointer.x = width * 0.52;
-      pointer.y = height * 0.42;
-      pointer.smoothX = pointer.x;
-      pointer.smoothY = pointer.y;
+      lastX = width * 0.52;
+      lastY = height * 0.42;
+      roamOriginX = lastX;
+      roamOriginY = lastY;
+      pointer.x = lastX;
+      pointer.y = lastY;
+      pointer.smoothX = lastX;
+      pointer.smoothY = lastY;
+    } else {
+      lastX = Math.max(0, Math.min(width, lastX));
+      lastY = Math.max(0, Math.min(height, lastY));
+      roamOriginX = Math.max(0, Math.min(width, roamOriginX));
+      roamOriginY = Math.max(0, Math.min(height, roamOriginY));
     }
     buildParticles();
     if (reducedMotion) renderFrame(0);
@@ -337,16 +363,54 @@ function initHeroField(hero) {
     const t = timeMs * 0.001;
     ctx.clearRect(0, 0, width, height);
 
-    const targetActive = pointerInside ? 1 : hasMovedPointer ? 0.14 : 0.22;
-    pointer.active += (targetActive - pointer.active) * 0.06;
-
-    if (!pointerInside && !hasMovedPointer) {
-      pointer.x = width * (0.5 + 0.14 * Math.cos(t * 0.35));
-      pointer.y = height * (0.42 + 0.09 * Math.sin(t * 0.45));
+    if (pointerDirty) {
+      lastMoveTimeMs = timeMs;
+      pointerDirty = false;
+      isAutonomous = false;
+    } else if (
+      hasMovedPointer &&
+      !isAutonomous &&
+      (!pointerInside || timeMs - lastMoveTimeMs > 1050)
+    ) {
+      isAutonomous = true;
+      roamStartMs = timeMs;
+      roamOriginX = lastX;
+      roamOriginY = lastY;
     }
 
-    pointer.smoothX += (pointer.x - pointer.smoothX) * 0.12;
-    pointer.smoothY += (pointer.y - pointer.smoothY) * 0.12;
+    if (isAutonomous) {
+      if (roamStartMs === null) {
+        roamStartMs = timeMs;
+      }
+      const dt = Math.max(0, (timeMs - roamStartMs) * 0.001);
+      // Smoothstep velocity ramp ensures zero jerk when departing from (lastX, lastY)
+      const rampT = Math.min(1, dt / 0.85);
+      const ramp = rampT * rampT * (3 - 2 * rampT);
+      const rx = Math.min(165, Math.max(60, width * 0.16));
+      const ry = Math.min(100, Math.max(42, height * 0.16));
+
+      // Lissajous/figure-8 drift: sin(0) === 0 guarantees zero discontinuity from (lastX, lastY)
+      const oscX = Math.sin(dt * 0.65) * rx;
+      const oscY = (Math.sin(dt * 1.3) * 0.7 + Math.sin(dt * 0.43) * 0.3) * ry;
+
+      // Gently guide extreme corner origins inward over time while keeping exact origin at dt = 0
+      const padX = Math.min(width * 0.25, rx * 0.85);
+      const padY = Math.min(height * 0.25, ry * 0.85);
+      const safeX = Math.max(padX, Math.min(width - padX, roamOriginX));
+      const safeY = Math.max(padY, Math.min(height - padY, roamOriginY));
+      const inwardBlend = 1 - Math.exp(-dt * 0.14);
+      const anchorX = roamOriginX + (safeX - roamOriginX) * inwardBlend;
+      const anchorY = roamOriginY + (safeY - roamOriginY) * inwardBlend;
+
+      pointer.x = Math.max(12, Math.min(width - 12, anchorX + oscX * ramp));
+      pointer.y = Math.max(12, Math.min(height - 12, anchorY + oscY * ramp));
+    }
+
+    const targetActive = isAutonomous ? 0.88 : 1.0;
+    pointer.active += (targetActive - pointer.active) * 0.08;
+
+    pointer.smoothX += (pointer.x - pointer.smoothX) * 0.14;
+    pointer.smoothY += (pointer.y - pointer.smoothY) * 0.14;
 
     if (pointer.active > 0.08) {
       const glow = ctx.createRadialGradient(
@@ -430,15 +494,25 @@ function initHeroField(hero) {
 
   hero.addEventListener("pointermove", (event) => {
     const rect = hero.getBoundingClientRect();
-    pointer.x = event.clientX - rect.left;
-    pointer.y = event.clientY - rect.top;
+    lastX = event.clientX - rect.left;
+    lastY = event.clientY - rect.top;
+    pointer.x = lastX;
+    pointer.y = lastY;
     pointerInside = true;
     hasMovedPointer = true;
+    pointerDirty = true;
+    isAutonomous = false;
     startLoop();
   });
 
   hero.addEventListener("pointerleave", () => {
     pointerInside = false;
+    if (!isAutonomous && hasMovedPointer) {
+      isAutonomous = true;
+      roamStartMs = null;
+      roamOriginX = lastX;
+      roamOriginY = lastY;
+    }
   });
 
   if ("ResizeObserver" in window) {

@@ -38,6 +38,7 @@
         <li><a href="index.html#architecture">Architecture</a></li>
         <li><a href="index.html#workplan">Work Plan</a></li>
         <li><a href="index.html#impact">Impact</a></li>
+        <li><a href="index.html#partners">Partners</a></li>
       </ul>
     </nav>
   </header>
@@ -100,6 +101,66 @@
                 </td>
                 <td>
                   EMS is open-loop unstable and sensitive to guideway-bridge coupling [12]; EDS generates no lift at standstill and requires support wheels below transition speed [13]; all operate on <strong>closed dedicated guideways</strong> with zero road interoperability.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Nøland (2024)</strong><br>
+                  <span class="muted"><em>IEEE Access</em> [16]</span>
+                </td>
+                <td>
+                  Ten-year technology readiness reassessment of Maglev and linear propulsion for high-speed/Hyperloop corridors, revisiting unresolved Maglev engineering hurdles since 1970s test programs.
+                </td>
+                <td>
+                  Idealized &ldquo;low-cost track&rdquo; assumptions break down under real-world airgap/alignment tolerances, expensive guideway switches, eddy-current/harmonic thermal losses, and missing experimental TRL validation at moderate speeds.
+                </td>
+                <td>
+                  Confirms greenfield/closed-tube Maglev CapEx and switching remain economically prohibitive, reinforcing MagLink&rsquo;s <strong>reuse of existing highway rights-of-way</strong> over closed dedicated guideways.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Felez et al. (2025)</strong><br>
+                  <span class="muted"><em>Sustainability</em> [17] &middot; EU MaDe4Rail</span>
+                </td>
+                <td>
+                  Evaluates a hybrid Maglev-Derived System (MDS) using virtually coupled pods and active canting designed to retrofit conventional rail corridors rather than build incompatible Maglev tracks.
+                </td>
+                <td>
+                  Retrofitting existing tracks cuts deployment barriers, with hardware benchmarks of ~&euro;3.25M/km single-track (linear motor stator, power electronics, segment switches) plus ~&euro;2.2M/km (levitation beams) while improving corridor capacity and energy efficiency.
+                </td>
+                <td>
+                  Simulation and cost-benefit stage only, strictly confined to legacy steel-rail alignments with <strong>zero road capability</strong>&mdash;leaving last-mile street access and road-to-highway transition unresolved for MagLink.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Feng et al. (2023)</strong><br>
+                  <span class="muted"><em>Vehicle System Dynamics</em> [18]</span>
+                </td>
+                <td>
+                  Distributed SIMPACK&ndash;ANSYS co-simulation of low-speed violent coupled vibrations observed in commercial EMS Maglev practice across movable steel switch (turnout) girders.
+                </td>
+                <td>
+                  Vertical end-misalignments and rotation angles at switch-girder joints sequentially excite levitation modules; low girder dead weight and structural damping trap vibration energy unless mitigated via tuned mass dampers, stiffer constraints, and retuned control.
+                </td>
+                <td>
+                  Exposes mechanical Maglev turnouts as a costly, dynamically sensitive low-speed bottleneck&mdash;motivating MagLink to <strong>offload terminal/urban routing onto rubber-tired steering</strong> instead of movable guideway switches.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Beauloye &amp; Dehez (2023)</strong><br>
+                  <span class="muted"><em>IEEE Trans. Transp. Electrif.</em> [19]</span>
+                </td>
+                <td>
+                  Reviews Permanent Magnet Electrodynamic Suspension (PM-EDS) track and magnet topologies, speed-dependent lift/drag physics, and experimental testbeds.
+                </td>
+                <td>
+                  Resistive track impedance at low-to-medium speeds drives a sharp electromagnetic eddy-current drag peak before inductive lift saturates at cruise; flat-plate guideways exhibit weak/negative lateral stiffness, while null-flux coils require complex side-wall geometry.
+                </td>
+                <td>
+                  Passive PM-EDS suffers severe low-speed eddy-current drag and weak lateral guidance&mdash;directly justifying MagLink&rsquo;s <strong>wheeled low-speed regime</strong> (avoiding the EDS drag hump) and active transition leveling.
                 </td>
               </tr>
               <tr>
@@ -290,7 +351,7 @@
           <article class="card">
             <h3>1. Literature Works in Silos</h3>
             <p class="muted">
-              Current studies optimize Maglev control [2, 12, 13], virtual-track urban trams [3], automated transit ODD/DRT safety [4, 8–11], or road-preview active suspension [5–7] separately; none couples road-level capillarity with highway levitation in one vehicle.
+              Current studies optimize Maglev control and deployment bottlenecks [2, 12, 13, 16–19], virtual-track urban trams [3], automated transit ODD/DRT safety [4, 8–11], or road-preview active suspension [5–7] separately; none couples road-level capillarity with highway levitation in one vehicle.
             </p>
           </article>
           <article class="card">
@@ -356,6 +417,10 @@
           <li id="ref-13">Huang, H., Li, H., Coombs, T. A., Zhu, H., Sun, Y., Lin, G., Xu, J., &amp; Zheng, J. (2024). Advancements in dynamic characteristics analysis of superconducting electrodynamic suspension systems: Modeling, experiment, and optimization. <em>Superconductivity</em>, 11, 100114. <a href="https://doi.org/10.1016/j.supcon.2024.100114" target="_blank" rel="noopener noreferrer">DOI: 10.1016/j.supcon.2024.100114</a>.</li>
           <li id="ref-14">Zhan, G., Niu, S., Zhang, W., Zhou, X., Pang, J., Li, Y., &amp; Zhan, J. (2022). A Docking Mechanism Based on a Stewart Platform and Its Tracking Control Based on Information Fusion Algorithm. <em>Sensors</em>, 22, 770. <a href="https://doi.org/10.3390/s22030770" target="_blank" rel="noopener noreferrer">DOI: 10.3390/s22030770</a>.</li>
           <li id="ref-15">Widyotriatmo, A., Kuncara, I. A., Amri, H., Hasan, A., &amp; Nazaruddin, Y. Y. (2024). Leveraging digital twin for autonomous docking of a container truck with stabilization control. <em>Journal of Field Robotics</em>, 41, 587–603. <a href="https://doi.org/10.1002/rob.22283" target="_blank" rel="noopener noreferrer">DOI: 10.1002/rob.22283</a>.</li>
+          <li id="ref-16">Nøland, J. K. (2024). A Reality Check on Maglev Technology for the Hyperloop Transportation System: Status Update After a Decade of Development. <em>IEEE Access</em>, 12, 162918–162928. <a href="https://doi.org/10.1109/ACCESS.2024.3491904" target="_blank" rel="noopener noreferrer">DOI: 10.1109/ACCESS.2024.3491904</a>.</li>
+          <li id="ref-17">Felez, J., Vaquero-Serrano, M. A., Portillo, D., Antunez, S., Carcasi, G., Nocita, A., Schultz-Wildelau, M., Parrotta, L. A., Fasano, G., &amp; Proietti, P. (2025). A New Concept of Hybrid Maglev-Derived Systems for Faster and More Efficient Rail Services Compatible with Existing Infrastructure. <em>Sustainability</em>, 17(11), 5056. <a href="https://doi.org/10.3390/su17115056" target="_blank" rel="noopener noreferrer">DOI: 10.3390/su17115056</a>.</li>
+          <li id="ref-18">Feng, Y., Zhao, C., Zhou, W., Cai, W., Liang, X., &amp; Shu, Y. (2023). Maglev vehicle-switch girder coupled vibration characteristics analysis based on distributed co-simulation. <em>Vehicle System Dynamics</em>, 61(5), 1345–1366. <a href="https://doi.org/10.1080/00423114.2022.2074470" target="_blank" rel="noopener noreferrer">DOI: 10.1080/00423114.2022.2074470</a>.</li>
+          <li id="ref-19">Beauloye, L., &amp; Dehez, B. (2023). Permanent Magnet Electrodynamic Suspensions Applied to MAGLEV Transportation Systems: A Review. <em>IEEE Transactions on Transportation Electrification</em>, 9(1), 748–758. <a href="https://doi.org/10.1109/TTE.2022.3193296" target="_blank" rel="noopener noreferrer">DOI: 10.1109/TTE.2022.3193296</a>.</li>
         </ol>
       </div>
     </section>
@@ -377,6 +442,7 @@
             <li><a href="index.html#challenge">Societal Challenge</a></li>
             <li><a href="index.html#architecture">Bimodal Architecture</a></li>
             <li><a href="index.html#workplan">WP1–WP5 Work Plan</a></li>
+            <li><a href="index.html#partners">Partners &amp; Collaborators</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -385,7 +451,7 @@
             <li><a href="#literature-matrix">Paper Analysis Matrix</a></li>
             <li><a href="#tech-comparison">Technology Comparison</a></li>
             <li><a href="#research-gap">Research Gap &amp; Domains</a></li>
-            <li><a href="#references">15 Cited References</a></li>
+            <li><a href="#references">19 Cited References</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -402,7 +468,7 @@
       <div class="footer-author-row">
         <div class="footer-author-block">
           <span class="footer-author-label">Main Author</span>
-          <span class="footer-author-name">Gabriel Ribeiro</span>
+          <span class="footer-author-name"><a href="https://github.com/gabriel-t-ribeiro" target="_blank" rel="noopener noreferrer">Gabriel Ribeiro</a></span>
         </div>
         <div class="footer-meta">
           MagLink R&amp;D Consortium &middot; <a href="index.html#workplan">Consortium &amp; WPs</a> &middot; Last updated: Nov&nbsp;2026
