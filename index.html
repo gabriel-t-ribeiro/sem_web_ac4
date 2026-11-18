@@ -131,7 +131,7 @@
               </tr>
               <tr>
                 <td>Predictive adaptive suspension for road comfort &amp; airgap capture</td>
-                <td>Mature camera + Light Detection and Ranging (LiDAR) perception stack</td>
+                <td>Camera + LiDAR multimodal fusion &amp; rule-based highway ODD guardrails [8–11]</td>
               </tr>
               <tr>
                 <td>Vehicle-to-Infrastructure (V2I) smart-stop occupancy &amp; skip-stop logic</td>
@@ -192,21 +192,21 @@
             <span class="badge">Mode 1 &middot; Local Streets</span>
             <h3>Wheeled Autonomous Transit</h3>
             <p class="muted">
-              Uses rubber-tire steering and traction on national and urban roads, building on Autonomous-Rail Rapid Transit (ART) virtual-track guidance [3] and Vision + LiDAR 3D point-cloud fusion, to serve local stops with full street maneuverability.
+              Uses rubber-tire steering on local roads, building on Autonomous-Rail Rapid Transit (ART) guidance [3] and Vision + LiDAR sensor fusion [10, 11]. Because unmonitored urban edge cases still constrain standalone autonomous buses [8, 9], MagLink treats road autonomy as an external capability paired with structured ODD guardrails.
             </p>
           </article>
           <article class="card">
             <span class="badge">Transition Core</span>
             <h3>Adaptive Suspension Handoff</h3>
             <p class="muted">
-              Predictive road-preview adaptive suspension levels the chassis over uneven pavement, aligns height and pitch within millimeter airgap tolerances at the guideway entry, and smoothly transfers vertical load between tires and magnetic bogies.
+              Predictive road-preview Model Predictive Control (MPC) active suspension levels the chassis over uneven pavement [5–7], aligns height and pitch within millimeter tolerances at the guideway entry, and smoothly transfers vertical load between tires and magnetic bogies [14, 15].
             </p>
           </article>
           <article class="card">
             <span class="badge">Mode 2 &middot; Highway Trunk</span>
             <h3>Open Maglev &amp; Smart Skip-Stop</h3>
             <p class="muted">
-              Travels contactless on a shared highway magnetic lane [2]. Smart stations detect waiting passengers and signal approaching vehicles via V2I, skipping empty stops to avoid unnecessary deceleration and re-acceleration energy losses [4].
+              Travels contactless on a shared highway magnetic lane using EMS/EDS principles [2, 12, 13]. Smart stations detect waiting passengers and signal approaching vehicles via V2I, skipping empty stops to avoid unnecessary deceleration and re-acceleration energy losses [4].
             </p>
           </article>
         </div>
@@ -242,7 +242,7 @@
         </p>
 
         <div class="callout-subtle">
-          <strong>Science-to-Technology Advance:</strong> Literature studies currently treat Electromagnetic/Electrodynamic Suspension (EMS/EDS) [2], virtual-track urban trams [3], and Demand-Responsive Transport (DRT) [4] in isolation. MagLink bridges them by engineering the physical bimodal handoff rig and validating corridor-level energy and lifecycle trade-offs via simulation.
+          <strong>Science-to-Technology Advance:</strong> Literature treats Electromagnetic/Electrodynamic Suspension (EMS/EDS) [2, 12, 13], virtual-track trams [3], autonomous transit buses [4, 8–11], and road-preview active suspension [5–7] in separate silos. MagLink links these domains via the physical bimodal handoff rig and corridor-level LCA simulation.
         </div>
 
         <div class="table-wrap">
@@ -271,8 +271,8 @@
               <tr>
                 <td><strong>WP3 · Adaptive Suspension &amp; Airgap</strong></td>
                 <td>M5–M16</td>
-                <td>Active Suspension Control Partner</td>
-                <td>Road-preview vertical/pitch controller, airgap capture tolerance loop, multi-body dynamics simulation.</td>
+                <td>Suspensão Ativa Preditiva (Partner)</td>
+                <td>Road-preview vertical/pitch MPC controller [5–7], airgap capture tolerance loop, multi-body dynamics simulation.</td>
               </tr>
               <tr>
                 <td><strong>WP4 · V2I Skip-Stop &amp; Corridor LCA</strong></td>
@@ -307,10 +307,13 @@
             </p>
           </article>
           <article class="card">
-            <span class="badge">Specialist Collaborator</span>
-            <h3>Adaptive Controlled Suspension</h3>
+            <span class="badge">Partner Group &middot; WP3</span>
+            <h3>Predictive Active Suspension (Suspensão Ativa Preditiva)</h3>
             <p class="muted">
-              Leads WP3 active chassis leveling and predictive damping, using forward-looking road geometry data to stabilize urban ride quality and maintain Maglev airgap alignment during transition.
+              <strong>Members:</strong> André Pinto, David Sousa, Dinis Mano, Filipe Guimarães, João Martins, Rodrigo Osório (Mechanical Engineering, Univ. of Aveiro) &middot; <a href="https://sem-susp-ativa-preditiva.htmly.com.br/" target="_blank" rel="noopener noreferrer">Partner Portal</a>.
+            </p>
+            <p class="muted">
+              Leads WP3 active chassis leveling and predictive damping, coupling computer-vision 3D road topography with speed-dependent MPC for independent 4-wheel pre-impact actuation to stabilize ride quality and capture Maglev airgap alignment during transition [5–7].
             </p>
           </article>
           <article class="card">
@@ -367,10 +370,21 @@
       <div class="container">
         <h2>5. Core Literature References</h2>
         <ol class="ref-list">
-          <li>Chen, P., Lu, Y., Wan, Y., &amp; Zhang, A. (2021). Assessing carbon dioxide emissions of high-speed rail: The case of Beijing–Shanghai corridor. <em>Transportation Research Part D</em>, 97, 102949.</li>
-          <li>Lee, H.-W., Kim, K.-C., &amp; Lee, J. (2006). Review of Maglev train technologies. <em>IEEE Transactions on Magnetics</em>, 42(7), 1917–1925.</li>
-          <li>Feng, J., Hu, Y., Yuan, X., Huang, R., Xiao, L., &amp; Zhang, C. (2024). Autonomous-rail rapid transit tram: System architecture, design and applications. <em>Green Energy and Intelligent Transportation</em>, 3(6), 100161.</li>
-          <li>Fadlelseed, S., et al. (2025). Recent advances in demand responsive transport: Opportunities with autonomous bus service—A system-of-systems overview. <em>IEEE Access</em>, 13, 107800–107831.</li>
+          <li id="ref-1">Chen, P., Lu, Y., Wan, Y., &amp; Zhang, A. (2021). Assessing carbon dioxide emissions of high-speed rail: The case of Beijing–Shanghai corridor. <em>Transportation Research Part D</em>, 97, 102949.</li>
+          <li id="ref-2">Lee, H.-W., Kim, K.-C., &amp; Lee, J. (2006). Review of Maglev train technologies. <em>IEEE Transactions on Magnetics</em>, 42(7), 1917–1925.</li>
+          <li id="ref-3">Feng, J., Hu, Y., Yuan, X., Huang, R., Xiao, L., &amp; Zhang, C. (2024). Autonomous-rail rapid transit tram: System architecture, design and applications. <em>Green Energy and Intelligent Transportation</em>, 3(6), 100161.</li>
+          <li id="ref-4">Fadlelseed, S., et al. (2025). Recent advances in demand responsive transport: Opportunities with autonomous bus service—A system-of-systems overview. <em>IEEE Access</em>, 13, 107800–107831.</li>
+          <li id="ref-5">Yu, M., Evangelou, S. A., &amp; Dini, D. (2024). Advances in Active Suspension Systems for Road Vehicles. <em>Engineering</em>, 33, 160–177. <a href="https://doi.org/10.1016/j.eng.2023.06.014" target="_blank" rel="noopener noreferrer">DOI: 10.1016/j.eng.2023.06.014</a>.</li>
+          <li id="ref-6">Theunissen, J., et al. (2021). Preview-based techniques for vehicle suspension control: A state-of-the-art review. <em>Annual Reviews in Control</em>, 51, 206–235. <a href="https://doi.org/10.1016/j.arcontrol.2021.03.010" target="_blank" rel="noopener noreferrer">DOI: 10.1016/j.arcontrol.2021.03.010</a>.</li>
+          <li id="ref-7">Li, Q., Chen, Z., Song, H., &amp; Dong, Y. (2024). Model Predictive Control for Speed-Dependent Active Suspension System with Road Preview Information. <em>Sensors</em>, 24(7), 2255. <a href="https://doi.org/10.3390/s24072255" target="_blank" rel="noopener noreferrer">DOI: 10.3390/s24072255</a>.</li>
+          <li id="ref-8">Mantouka, E. G., Vakrinou, K., Christidis, K., Magoutas, B., Kiousi, A. V., &amp; Vlahogianni, E. I. (2026). Automated Vehicle Traffic: A Review of Operational Challenges, Infrastructure Requirements and Research Directions. <em>Sensors</em>, 26, 1232. <a href="https://doi.org/10.3390/s26041232" target="_blank" rel="noopener noreferrer">DOI: 10.3390/s26041232</a>.</li>
+          <li id="ref-9">Gyllenhammar, M., de Campos, G. R., &amp; Törngren, M. (2025). The Road to Safe Automated Driving Systems: A Review of Methods Providing Safety Evidence. <em>IEEE Transactions on Intelligent Transportation Systems</em>, 26, 4315–4345. <a href="https://doi.org/10.1109/tits.2025.3532684" target="_blank" rel="noopener noreferrer">DOI: 10.1109/tits.2025.3532684</a>.</li>
+          <li id="ref-10">Chen, L., Wu, P., Chitta, K., Jaeger, B., Geiger, A., &amp; Li, H. (2024). End-to-End Autonomous Driving: Challenges and Frontiers. <em>IEEE Transactions on Pattern Analysis and Machine Intelligence</em>, 46, 10164–10183. <a href="https://doi.org/10.1109/tpami.2024.3435937" target="_blank" rel="noopener noreferrer">DOI: 10.1109/tpami.2024.3435937</a>.</li>
+          <li id="ref-11">Iqbal, U., Massoud, A., &amp; Noureldin, A. M. (2026). A Sensor-Centric Survey of Autonomous Driving: Integrating Measurement Physics, Uncertainty Modeling, and Safety-Critical Multi-Sensor Fusion. <em>Sensors</em>, 26, 3801. <a href="https://doi.org/10.3390/s26123801" target="_blank" rel="noopener noreferrer">DOI: 10.3390/s26123801</a>.</li>
+          <li id="ref-12">Zhu, Q., Wang, S.-M., &amp; Ni, Y.-Q. (2024). A Review of Levitation Control Methods for Low- and Medium-Speed Maglev Systems. <em>Buildings</em>, 14, 837. <a href="https://doi.org/10.3390/buildings14030837" target="_blank" rel="noopener noreferrer">DOI: 10.3390/buildings14030837</a>.</li>
+          <li id="ref-13">Huang, H., Li, H., Coombs, T. A., Zhu, H., Sun, Y., Lin, G., Xu, J., &amp; Zheng, J. (2024). Advancements in dynamic characteristics analysis of superconducting electrodynamic suspension systems: Modeling, experiment, and optimization. <em>Superconductivity</em>, 11, 100114. <a href="https://doi.org/10.1016/j.supcon.2024.100114" target="_blank" rel="noopener noreferrer">DOI: 10.1016/j.supcon.2024.100114</a>.</li>
+          <li id="ref-14">Zhan, G., Niu, S., Zhang, W., Zhou, X., Pang, J., Li, Y., &amp; Zhan, J. (2022). A Docking Mechanism Based on a Stewart Platform and Its Tracking Control Based on Information Fusion Algorithm. <em>Sensors</em>, 22, 770. <a href="https://doi.org/10.3390/s22030770" target="_blank" rel="noopener noreferrer">DOI: 10.3390/s22030770</a>.</li>
+          <li id="ref-15">Widyotriatmo, A., Kuncara, I. A., Amri, H., Hasan, A., &amp; Nazaruddin, Y. Y. (2024). Leveraging digital twin for autonomous docking of a container truck with stabilization control. <em>Journal of Field Robotics</em>, 41, 587–603. <a href="https://doi.org/10.1002/rob.22283" target="_blank" rel="noopener noreferrer">DOI: 10.1002/rob.22283</a>.</li>
         </ol>
       </div>
     </section>

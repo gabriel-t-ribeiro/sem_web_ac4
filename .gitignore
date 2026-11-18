@@ -4,8 +4,9 @@
 .vscode/
 .idea/
 
-# Local course source documents (keep private out of public repo)
+# Local course source documents & Finder aliases (keep private out of public repo)
 sem_sources/
+sem_final_evaluations_alias
 
 # Python (for figure/asset generation scripts)
 __pycache__/

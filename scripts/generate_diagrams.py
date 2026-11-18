@@ -174,7 +174,7 @@ def build_workplan_gantt_svg() -> str:
     wps = [
         ("WP1 · System Specs &amp; Corridor Req.", 1, 6, "#2563eb", "M1–M6 · Core Architecture Team"),
         ("WP2 · Bimodal Transition &amp; Chassis", 4, 15, "#0284c7", "M4–M15 · Mechanical Integration"),
-        ("WP3 · Adaptive Suspension &amp; Airgap", 5, 16, "#0d9488", "M5–M16 · Suspension Control Partner"),
+        ("WP3 · Adaptive Suspension &amp; Airgap", 5, 16, "#0d9488", "M5–M16 · Suspensão Ativa Preditiva"),
         ("WP4 · V2I Skip-Stop &amp; Corridor Sim", 10, 21, "#6366f1", "M10–M21 · Autonomy &amp; LCA Modeling"),
         ("WP5 · Rig Integration &amp; TRL 4 Val.", 15, 24, "#0f4c81", "M15–M24 · Full Consortium V&amp;V"),
     ]

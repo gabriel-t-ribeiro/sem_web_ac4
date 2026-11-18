@@ -738,12 +738,21 @@ tr:last-child td {
   background: var(--bg-soft);
 }
 
+.card a,
+td a,
+.ref-list a,
 .site-footer a {
   color: var(--accent);
   font-weight: 600;
   text-decoration: none;
 }
 
+.card a:hover,
+.card a:focus-visible,
+td a:hover,
+td a:focus-visible,
+.ref-list a:hover,
+.ref-list a:focus-visible,
 .site-footer a:hover,
 .site-footer a:focus-visible {
   text-decoration: underline;
