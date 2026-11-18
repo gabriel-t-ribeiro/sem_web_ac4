@@ -6,19 +6,31 @@
   <title>MagLink — Bimodal Autonomous Hybrid Transit | SEM 2026/2027</title>
   <meta name="description" content="MagLink: Bimodal autonomous public transit linking local road driving and open highway magnetic levitation corridors (SEM 2026/2027 IID-EM Proposal).">
   <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <header class="site-header">
     <nav class="container nav-bar" aria-label="Primary navigation">
-      <a class="brand" href="#top">MagLink</a>
+      <a class="brand" href="index.html">MagLink</a>
       <ul class="nav-links">
-        <li><a href="#problem">Problem &amp; Boundary</a></li>
-        <li><a href="#concept">Technical Concept</a></li>
-        <li><a href="#consortium">Consortium &amp; Plan</a></li>
-        <li><a href="#impact">Impact &amp; Ethics</a></li>
-        <li><a href="#references">References</a></li>
+        <li><a href="index.html" aria-current="page">Overview</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-controls="research-menu">
+            Research <span aria-hidden="true">&#9662;</span>
+          </button>
+          <ul id="research-menu" class="nav-dropdown-menu">
+            <li><a href="state-of-the-art.html">State of the Art (Full)</a></li>
+            <li><a href="state-of-the-art.html#literature-matrix">Paper Analysis Matrix</a></li>
+            <li><a href="state-of-the-art.html#tech-comparison">Technology Comparison</a></li>
+            <li><a href="state-of-the-art.html#research-gap">SotA Gap &amp; Positioning</a></li>
+          </ul>
+        </li>
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#concept">Concept</a></li>
+        <li><a href="#consortium">Consortium</a></li>
+        <li><a href="#impact">Impact</a></li>
       </ul>
     </nav>
   </header>
@@ -31,6 +43,10 @@
         <p class="lead">
           A public transit architecture designed to outperform conventional trams and Light Rail Transit (LRT) on regional and intercity corridors—combining autonomous Vision + LiDAR road driving and V2I smart skip-stop routing with high-speed, contactless travel on open highway Maglev lanes, without building new steel railways from scratch.
         </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="state-of-the-art.html">Explore State of the Art &amp; Paper Matrix &rarr;</a>
+          <a class="btn btn-secondary" href="#consortium">View Consortium &amp; Roles</a>
+        </div>
         <div class="kpi-grid" aria-label="Target project indicators">
           <article class="kpi-card">
             <span class="kpi-value">2 Modes</span>

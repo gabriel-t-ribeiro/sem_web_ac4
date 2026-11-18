@@ -84,6 +84,7 @@ body {
 .nav-links {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 1.25rem;
   list-style: none;
   margin: 0;
@@ -98,15 +99,115 @@ body {
 }
 
 .nav-links a:hover,
-.nav-links a:focus-visible {
+.nav-links a:focus-visible,
+.nav-links a[aria-current="page"] {
   color: var(--accent);
   text-decoration: underline;
+}
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-toggle {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 0.25rem 0.45rem;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.nav-dropdown-toggle:hover,
+.nav-dropdown-toggle:focus-visible,
+.nav-dropdown.is-open .nav-dropdown-toggle {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  left: 0;
+  min-width: 220px;
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1);
+  z-index: 60;
+}
+
+.nav-dropdown.is-open .nav-dropdown-menu,
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+  display: block;
+}
+
+.nav-dropdown-menu a {
+  display: block;
+  padding: 0.45rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a:focus-visible {
+  background: var(--accent-soft);
+  text-decoration: none;
 }
 
 .hero {
   padding-block: 4rem 3.5rem;
   background: linear-gradient(180deg, var(--accent-soft) 0%, var(--bg) 100%);
   border-bottom: 1px solid var(--border);
+}
+
+.hero-compact {
+  padding-block: 3rem 2.5rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 0 2rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.65rem 1.1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: 1px solid var(--accent);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  filter: brightness(1.08);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--accent);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  background: var(--accent-soft);
 }
 
 .eyebrow {
@@ -227,6 +328,10 @@ th {
 
 tr:last-child td {
   border-bottom: none;
+}
+
+.row-highlight td {
+  background: var(--accent-soft);
 }
 
 .section {

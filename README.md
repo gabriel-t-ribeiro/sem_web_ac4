@@ -48,8 +48,10 @@ Then open `http://localhost:8000` in your browser.
 
 | File / Folder | Purpose |
 | :--- | :--- |
-| `index.html` | Main public webpage (semantic HTML5, zero build step) |
-| `css/styles.css` | Layout, typography, tables, and responsive styling |
+| `index.html` | Main public overview webpage (semantic HTML5, zero build step) |
+| `state-of-the-art.html` | Second page (navbar Research dropdown): paper matrix, technology comparison & SotA gap |
+| `css/styles.css` | Layout, dropdown navigation, typography, tables, and responsive styling |
+| `js/main.js` | Accessible click/Escape/outside-click handling for the navbar dropdown |
 | `assets/` | Figures, system architecture diagrams, Gantt charts, and plots |
 | `scripts/` | Python scripts (e.g., parametric corridor estimator, Matplotlib/Plotly charts) outputting to `assets/` |
 | `.nojekyll` | Disables Jekyll on GitHub Pages so static files serve cleanly |

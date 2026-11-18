@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>State of the Art &amp; Literature Matrix | MagLink — SEM 2026/2027</title>
+  <meta name="description" content="State of the Art synthesis, reference paper limitations, and technology positioning for the MagLink bimodal transit R&D proposal.">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="container nav-bar" aria-label="Primary navigation">
+      <a class="brand" href="index.html">MagLink</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Overview</a></li>
+        <li class="nav-dropdown">
+          <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-controls="research-menu">
+            Research <span aria-hidden="true">&#9662;</span>
+          </button>
+          <ul id="research-menu" class="nav-dropdown-menu">
+            <li><a href="state-of-the-art.html" aria-current="page">State of the Art (Full)</a></li>
+            <li><a href="state-of-the-art.html#literature-matrix">Paper Analysis Matrix</a></li>
+            <li><a href="state-of-the-art.html#tech-comparison">Technology Comparison</a></li>
+            <li><a href="state-of-the-art.html#research-gap">SotA Gap &amp; Positioning</a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#problem">Problem</a></li>
+        <li><a href="index.html#concept">Concept</a></li>
+        <li><a href="index.html#consortium">Consortium</a></li>
+        <li><a href="index.html#impact">Impact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="hero hero-compact">
+      <div class="container">
+        <p class="eyebrow">MagLink &middot; Research Foundation</p>
+        <h1>State of the Art &amp; Reference Paper Analysis</h1>
+        <p class="lead">
+          Critical synthesis of the four core literature pillars supporting MagLink—explicitly mapping each paper's main contribution, key conclusions, and unresolved limitations to our consortium's R&amp;D scope.
+        </p>
+      </div>
+    </section>
+
+    <section id="literature-matrix" class="section">
+      <div class="container">
+        <h2>1. Reference Paper Analysis Matrix</h2>
+        <p>
+          Every reference below grounds one subsystem of MagLink—and exposes a specific limitation that no single existing system solves alone.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Reference</th>
+                <th>Main Work</th>
+                <th>Main Conclusions</th>
+                <th>Main Limitations &amp; Open Gap</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>Chen et al. (2021)</strong><br>
+                  <span class="muted"><em>Transp. Res. Part D</em> [1]</span>
+                </td>
+                <td>
+                  Ex-post Life-Cycle Assessment (LCA) of the Beijing–Shanghai High-Speed Rail (HSR), modeling mode substitution and induced traffic across construction, rolling-stock manufacturing, and operation.
+                </td>
+                <td>
+                  Operational CO<sub>2</sub> turns net-negative once enough road/air traffic shifts to rail; however, <strong>building new HSR infrastructure creates a huge upfront CO<sub>2</sub> burden</strong> barely offset by avoided road/air expansion.
+                </td>
+                <td>
+                  Single-corridor case study; demonstrates that <strong>greenfield rail construction is carbon- and capital-intensive</strong>, motivating high-speed systems that reuse existing highway corridors.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Lee, Kim &amp; Lee (2006)</strong><br>
+                  <span class="muted"><em>IEEE Trans. Magn.</em> [2]</span>
+                </td>
+                <td>
+                  Reviews Electromagnetic Suspension (EMS) vs. Electrodynamic Suspension (EDS), linear induction/synchronous propulsion (LIM/LSM), guidance, and global Maglev deployments.
+                </td>
+                <td>
+                  EMS + LIM lowers civil cost for low/medium-speed urban lines; EDS + LSM is preferred for ultra-high-speed reliability; HTS and permanent magnets improve efficiency.
+                </td>
+                <td>
+                  Pre-modern autonomy (2006); confined to <strong>closed, dedicated guideways</strong> with zero road/last-mile interoperability; flags remaining system-level cost and adoption barriers.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Feng et al. (2024)</strong><br>
+                  <span class="muted"><em>Green Energy &amp; Intell. Transp.</em> [3]</span>
+                </td>
+                <td>
+                  Designs the Autonomous-Rail Rapid Transit (ART) rubber-tire tram architecture using virtual painted tracks and benchmarks the Yibin T1 line against subway, tram, and BRT.
+                </td>
+                <td>
+                  Achieves rail-like multi-axle guidance and capacity on existing urban roads with minimal civil works (98.8% schedule on-time rate; 26.8&nbsp;km/h avg vs. 13&nbsp;km/h bus).
+                </td>
+                <td>
+                  Operating speed capped at <strong>70&nbsp;km/h</strong> (unsuitable for fast regional/intercity trunk segments); relies on road markings + vision/GPS/IMU; authors highlight <strong>"long-tail" autonomous driving edge cases</strong> and virtual platooning as open work.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Fadlelseed et al. (2025)</strong><br>
+                  <span class="muted"><em>IEEE Access</em> [4]</span>
+                </td>
+                <td>
+                  System-of-Systems (SoS) review of Demand Responsive Transport (DRT) with Connected &amp; Automated Mobility (CAM) buses across routing algorithms, infrastructure, and lifecycle ROI.
+                </td>
+                <td>
+                  Automated DRT reaches ROI break-even around Year&nbsp;5 on structured corridors and cuts CO<sub>2</sub>/NO<sub>x</sub> by ~40–60% vs. conventional buses; adaptive peak/off-peak models optimize fleet efficiency.
+                </td>
+                <td>
+                  Remains a low/medium-speed road-only service with fluctuating-demand investment risk; authors flag <strong>V2X cybersecurity/spoofing</strong>, digital-twin V&amp;V, and multimodal rail integration as unresolved challenges.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Partner &amp; Transition Literature</strong><br>
+                  <span class="muted"><em>Consortium To-Do</em></span>
+                </td>
+                <td>
+                  <em>Pending integration:</em> Predictive active/adaptive controlled suspension papers (collaborating group) and dual-mode wheel-to-guideway mechanical handoff studies.
+                </td>
+                <td>
+                  <em>To synthesize:</em> Road-preview damping bandwidth, active ride-height leveling, and magnetic airgap capture tolerances.
+                </td>
+                <td>
+                  <em>Target gap:</em> Quantifying mass penalty, alignment precision, and fail-safe mechanical latching during mode switching.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="tech-comparison" class="section section-alt">
+      <div class="container">
+        <h2>2. Comparative Technology Positioning</h2>
+        <p>
+          Synthesized from Feng et al. (2024, Table&nbsp;5) [3], Lee et al. (2006) [2], and Chen et al. (2021) [1], showing why MagLink targets the gap between urban LRT/ART and dedicated rail.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>System</th>
+                <th>Right-of-Way / Infrastructure</th>
+                <th>Max Speed</th>
+                <th>Door-to-Door Flexibility</th>
+                <th>Primary Bottleneck</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Conventional BRT / Bus</strong></td>
+                <td>Existing roads (dedicated or mixed lanes)</td>
+                <td>~60&nbsp;km/h [3]</td>
+                <td>High (flexible road routing)</td>
+                <td>Low speed, rolling/stop losses, congestion</td>
+              </tr>
+              <tr>
+                <td><strong>Tram / LRT (e.g., Coimbra-type)</strong></td>
+                <td>Newly laid rails &amp; reconstructed bridges/roads [3]</td>
+                <td>~70&nbsp;km/h [3]</td>
+                <td>Low (fixed steel track)</td>
+                <td>High civil CAPEX, long build time, rigid route</td>
+              </tr>
+              <tr>
+                <td><strong>ART Virtual-Track Tram</strong></td>
+                <td>Existing urban roads + painted virtual tracks [3]</td>
+                <td>70&nbsp;km/h [3]</td>
+                <td>Medium (road-capable, multi-axle)</td>
+                <td>Urban speed limit; not viable for fast highway trunks</td>
+              </tr>
+              <tr>
+                <td><strong>Dedicated HSR / Maglev</strong></td>
+                <td>Exclusive bridges, tunnels, or Maglev guideway [2, 3]</td>
+                <td>300–500+&nbsp;km/h [2]</td>
+                <td>Very Low (hub-to-hub only)</td>
+                <td>Massive embodied CO<sub>2</sub> &amp; construction cost [1]</td>
+              </tr>
+              <tr class="row-highlight">
+                <td><strong>MagLink (Proposed)</strong></td>
+                <td>Existing local roads + shared open highway Maglev lane</td>
+                <td>Dual-regime (Local + High-speed trunk)</td>
+                <td>High (local wheels + V2I skip-stop DRT)</td>
+                <td><strong>Wheel &harr; Maglev transition &amp; adaptive suspension</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="research-gap" class="section">
+      <div class="container">
+        <h2>3. Resulting Research Gap &amp; Consortium Motivation</h2>
+        <div class="card-grid">
+          <article class="card">
+            <h3>1. Literature Works in Silos</h3>
+            <p>
+              Current studies optimize Maglev physics [2], virtual-track urban trams [3], or autonomous DRT routing [4] separately—no architecture couples road-level capillarity with contactless highway levitation in one vehicle.
+            </p>
+          </article>
+          <article class="card">
+            <h3>2. The Missing Physical Interface</h3>
+            <p>
+              Combining our consortium's <strong>adaptive controlled suspension</strong> with magnetic bogies turns a conceptual bimodal sketch into a concrete mechanical R&amp;D problem: controlling ride height, pitch, mass budget, and fail-safe mode handoff.
+            </p>
+          </article>
+          <article class="card">
+            <h3>3. Next Step: Parametric Corridor Proof</h3>
+            <p>
+              Using parameters from [1–4], our next milestone is a literature-grounded Python corridor model estimating travel time, energy per passenger-km, and lifecycle CO<sub>2</sub> against LRT/tram and conventional bus baselines.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>MagLink Consortium &middot; Seminários em Engenharia Mecânica (SEM) &middot; Universidade de Aveiro &middot; 2026/2027</p>
+    </div>
+  </footer>
+</body>
+</html>
