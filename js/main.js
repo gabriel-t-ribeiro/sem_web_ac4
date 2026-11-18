@@ -200,11 +200,11 @@ function initWordmarkFloat(wordmark) {
         const dx = cx - pointerX;
         const dy = cy - pointerY;
         const dist = Math.hypot(dx, dy) || 1;
-        const radius = 220;
+        const radius = 220 * scaleAmp;
         if (dist < radius) {
           const strength = Math.pow(1 - dist / radius, 1.5);
-          targetPx = (dx / dist) * strength * 14;
-          targetPy = -strength * 18;
+          targetPx = (dx / dist) * strength * 14 * scaleAmp;
+          targetPy = -strength * 18 * scaleAmp;
           targetPr = ((dx / radius) * 5.5) * strength;
         }
       }
