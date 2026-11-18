@@ -186,7 +186,17 @@ svg {
   z-index: 70;
 }
 
+.nav-dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -0.65rem;
+  left: -0.5rem;
+  right: -0.5rem;
+  height: 0.7rem;
+}
+
 .nav-dropdown.is-open .nav-dropdown-menu,
+.nav-dropdown.is-hover-open .nav-dropdown-menu,
 .nav-dropdown:hover .nav-dropdown-menu,
 .nav-dropdown:focus-within .nav-dropdown-menu {
   display: block;
@@ -249,6 +259,10 @@ svg {
     background: rgba(255, 255, 255, 0.04);
     margin-top: 0.2rem;
     padding-left: 0.75rem;
+  }
+
+  .nav-dropdown-menu::before {
+    display: none;
   }
 }
 

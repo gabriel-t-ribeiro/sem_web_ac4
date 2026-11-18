@@ -3,11 +3,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelector(".nav-links");
   const dropdowns = document.querySelectorAll(".nav-dropdown");
 
+  const closeTimers = new WeakMap();
+
   const closeAllDropdowns = () => {
     dropdowns.forEach((dropdown) => {
+      clearTimeout(closeTimers.get(dropdown));
       const btn = dropdown.querySelector(".nav-dropdown-toggle");
       if (btn) btn.setAttribute("aria-expanded", "false");
-      dropdown.classList.remove("is-open");
+      dropdown.classList.remove("is-open", "is-hover-open");
     });
   };
 
@@ -26,9 +29,34 @@ document.addEventListener("DOMContentLoaded", () => {
     const menu = dropdown.querySelector(".nav-dropdown-menu");
     if (!toggle || !menu) return;
 
+    dropdown.addEventListener("pointerenter", (event) => {
+      if (event.pointerType !== "mouse") return;
+      clearTimeout(closeTimers.get(dropdown));
+      dropdowns.forEach((other) => {
+        if (other !== dropdown) {
+          clearTimeout(closeTimers.get(other));
+          other.classList.remove("is-hover-open");
+        }
+      });
+      dropdown.classList.add("is-hover-open");
+      toggle.setAttribute("aria-expanded", "true");
+    });
+
+    dropdown.addEventListener("pointerleave", (event) => {
+      if (event.pointerType !== "mouse") return;
+      clearTimeout(closeTimers.get(dropdown));
+      const timer = setTimeout(() => {
+        dropdown.classList.remove("is-hover-open");
+        if (!dropdown.classList.contains("is-open")) {
+          toggle.setAttribute("aria-expanded", "false");
+        }
+      }, 180);
+      closeTimers.set(dropdown, timer);
+    });
+
     toggle.addEventListener("click", (event) => {
       event.stopPropagation();
-      const next = toggle.getAttribute("aria-expanded") !== "true";
+      const next = !dropdown.classList.contains("is-open");
       closeAllDropdowns();
       toggle.setAttribute("aria-expanded", String(next));
       dropdown.classList.toggle("is-open", next);
@@ -58,9 +86,10 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("click", (event) => {
     dropdowns.forEach((dropdown) => {
       if (!dropdown.contains(event.target)) {
+        clearTimeout(closeTimers.get(dropdown));
         const btn = dropdown.querySelector(".nav-dropdown-toggle");
         if (btn) btn.setAttribute("aria-expanded", "false");
-        dropdown.classList.remove("is-open");
+        dropdown.classList.remove("is-open", "is-hover-open");
       }
     });
     if (navToggle && navLinks && !navLinks.contains(event.target) && !navToggle.contains(event.target)) {
