@@ -180,7 +180,7 @@ def build_workplan_gantt_svg() -> str:
     ]
     x0 = 265
     total_m = 24
-    chart_w = 500
+    chart_w = 440  # leaves room for the owner labels right of the bars
     step = chart_w / total_m
 
     grid_lines = []
