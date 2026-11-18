@@ -227,7 +227,94 @@ def build_workplan_gantt_svg() -> str:
 """
 
 
+def build_survey_proof_of_interest_svg() -> str:
+    # Exact exploratory Ag2 survey counts (n = 51, fielded Oct 2-7, 2026)
+    demand_bars = [
+        ("Transfer-free travel (Q7 &#8805;4/5)", 94.1, "94.1% · 4.67/5", "#2563eb"),
+        ("Network interest (Q14 &#8805;4/5)", 80.4, "80.4% · 4.10/5", "#0284c7"),
+        ("Bimodal willingness (Q6)", 70.6, "70.6% · 0% No", "#0d9488"),
+        ("Driverless willingness (Q4)", 64.7, "64.7% · 19.6% No", "#475569"),
+        ("Autonomous comfort (Q5 &#8805;4/5)", 47.1, "47.1% · 3.43/5", "#d97706"),
+    ]
+    driver_bars = [
+        ("Fare price top factor (Q8)", 82.4, "82.4% (42/51)", "#0f4c81"),
+        ("Price&#8211;time balance (Q13)", 82.4, "82.4% (42/51)", "#1d4ed8"),
+        ("Remote oversight &#8805;4/5 (Q10)", 82.4, "82.4% · 4.31/5", "#0284c7"),
+        ("Safety top factor (Q8)", 76.5, "76.5% (39/51)", "#0369a1"),
+        ("Public tests (Q11 &#8594; WP5)", 66.7, "66.7% (34/51)", "#0d9488"),
+        ("Redundancy (Q11 &#8594; WP2)", 49.0, "49.0% (25/51)", "#0f766e"),
+        ("Autonomy fear (Q9 &#8594; WP2/4)", 45.1, "45.1% (23/51)", "#b45309"),
+    ]
+
+    left_rows = []
+    y = 122
+    lx = 232
+    lw = 136
+    for label, pct, note, color in demand_bars:
+        bw = (pct / 100.0) * lw
+        left_rows.append(
+            f'<text class="lbl" x="{lx - 10}" y="{y + 15}" text-anchor="end">{label}</text>'
+            f'<rect x="{lx}" y="{y + 2}" width="{lw}" height="18" rx="5" fill="#e2e8f0"/>'
+            f'<rect x="{lx}" y="{y + 2}" width="{bw:.1f}" height="18" rx="5" fill="{color}"/>'
+            f'<text class="val" x="{lx + lw + 8}" y="{y + 15}">{note}</text>'
+        )
+        y += 42
+
+    right_rows = []
+    ry = 122
+    rx = 724
+    rw = 124
+    for label, pct, note, color in driver_bars:
+        bw = (pct / 100.0) * rw
+        right_rows.append(
+            f'<text class="lbl" x="{rx - 10}" y="{ry + 15}" text-anchor="end">{label}</text>'
+            f'<rect x="{rx}" y="{ry + 2}" width="{rw}" height="18" rx="5" fill="#e2e8f0"/>'
+            f'<rect x="{rx}" y="{ry + 2}" width="{bw:.1f}" height="18" rx="5" fill="{color}"/>'
+            f'<text class="val" x="{rx + rw + 8}" y="{ry + 15}">{note}</text>'
+        )
+        ry += 35
+
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 436" role="img" aria-labelledby="sp-title sp-desc">
+  <title id="sp-title">Exploratory Community Survey Proof of Interest and Design Drivers</title>
+  <desc id="sp-desc">Summary of 51 exploratory responses showing strong support for transfer-free bimodal travel, price-and-safety prioritization, and remote supervision plus pre-launch testing requirements.</desc>
+  <defs>
+    <style>
+      .bg {{ fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; }}
+      .panel {{ fill: #f8fafc; stroke: #e2e8f0; stroke-width: 1.2; }}
+      .title {{ font-family: system-ui, -apple-system, sans-serif; font-size: 16px; font-weight: 700; fill: #0f172a; }}
+      .subtitle {{ font-family: system-ui, -apple-system, sans-serif; font-size: 12px; fill: #475569; }}
+      .sec-h {{ font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 700; fill: #0f4c81; }}
+      .lbl {{ font-family: system-ui, -apple-system, sans-serif; font-size: 11.5px; font-weight: 600; fill: #1e293b; }}
+      .val {{ font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600; fill: #334155; }}
+      .note-box {{ fill: #eff6ff; stroke: #bfdbfe; stroke-width: 1; }}
+      .note-txt {{ font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600; fill: #1e3a8a; }}
+      .caveat-box {{ fill: #f1f5f9; stroke: #cbd5e1; stroke-width: 1; }}
+      .caveat-txt {{ font-family: system-ui, -apple-system, sans-serif; font-size: 11.5px; fill: #334155; }}
+    </style>
+  </defs>
+
+  <rect class="bg" x="1" y="1" width="978" height="434" rx="14"/>
+  <text class="title" x="26" y="32">Exploratory Community Survey: Proof of Interest &amp; Requirements (n = 51)</text>
+  <text class="subtitle" x="26" y="52">Fielded Oct 2&#8211;7, 2026 (84.3% private-car users) &#183; Connects public demand directly to cost constraints and WP2&#8211;WP5 safeguards.</text>
+
+  <rect class="panel" x="24" y="70" width="456" height="304" rx="12"/>
+  <text class="sec-h" x="40" y="96">A. Proof of Interest vs. Autonomy Comfort</text>
+  {''.join(left_rows)}
+  <rect class="note-box" x="38" y="330" width="428" height="32" rx="8"/>
+  <text class="note-txt" x="252" y="350" text-anchor="middle">70.6% bimodal adoption vs. 47.1% comfort &#8594; prove safety first</text>
+
+  <rect class="panel" x="496" y="70" width="460" height="304" rx="12"/>
+  <text class="sec-h" x="512" y="96">B. Selection Priorities &amp; Trust Safeguards</text>
+  {''.join(right_rows)}
+
+  <rect class="caveat-box" x="24" y="386" width="932" height="32" rx="8"/>
+  <text class="caveat-txt" x="38" y="406">Sample caveat (requirements triage): Cohort is 92.2% aged 18&#8211;24 and 7.8% aged 25&#8211;34 (0% 35+); WP1 expands commuter validation across all ages.</text>
+</svg>
+"""
+
+
 if __name__ == "__main__":
     save_and_validate_svg("fig_mode_transition.svg", build_mode_transition_svg())
     save_and_validate_svg("fig_sota_benchmark.svg", build_sota_benchmark_svg())
     save_and_validate_svg("fig_workplan_gantt.svg", build_workplan_gantt_svg())
+    save_and_validate_svg("fig_survey_proof_of_interest.svg", build_survey_proof_of_interest_svg())
