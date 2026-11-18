@@ -108,8 +108,148 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  document.querySelectorAll(".hero").forEach(initHeroField);
+  document.querySelectorAll(".hero, .cta-stage").forEach(initHeroField);
+  document.querySelectorAll(".cta-stage").forEach(initCtaScrollScale);
+  document.querySelectorAll(".footer-wordmark").forEach(initWordmarkFloat);
 });
+
+/**
+ * Smoothly scales the pre-footer interactive showcase card from 0.95 to 1.0 as it enters view.
+ */
+function initCtaScrollScale(stage) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    stage.style.setProperty("--cta-scale", "1");
+    return;
+  }
+
+  let ticking = false;
+  const updateScale = () => {
+    ticking = false;
+    const rect = stage.getBoundingClientRect();
+    const vh = window.innerHeight || 800;
+    const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.65)));
+    const scale = 0.94 + progress * 0.06;
+    stage.style.setProperty("--cta-scale", scale.toFixed(4));
+  };
+
+  const onScroll = () => {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(updateScale);
+    }
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+  updateScale();
+}
+
+/**
+ * Animates trailing "Link" glyphs in the bottom wordmark with magnetic levitation bobbing
+ * and subtle cursor-proximity repulsion, pausing off-screen or when reduced motion is enabled.
+ */
+function initWordmarkFloat(wordmark) {
+  const glyphs = Array.from(wordmark.querySelectorAll(".wm-float"));
+  if (!glyphs.length) return;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const presets = [
+    { ampY: 10, rot: -1.6, speed: 1.15, phase: 0.2 },
+    { ampY: 15, rot: 1.9, speed: 1.35, phase: 1.7 },
+    { ampY: 11, rot: -1.4, speed: 1.05, phase: 3.1 },
+    { ampY: 16, rot: 2.2, speed: 1.28, phase: 4.5 },
+  ];
+
+  const states = glyphs.map(() => ({ px: 0, py: 0, pr: 0 }));
+  let pointerX = -9999;
+  let pointerY = -9999;
+  let pointerInside = false;
+  let isVisible = true;
+  let rafId = null;
+
+  if (reducedMotion) {
+    glyphs.forEach((el, idx) => {
+      const p = presets[idx % presets.length];
+      el.style.transform = `translate3d(0, ${-Math.round(p.ampY * 0.45)}px, 0) rotate(${(p.rot * 0.6).toFixed(2)}deg)`;
+    });
+    return;
+  }
+
+  function frame(timeMs) {
+    if (!isVisible) {
+      rafId = null;
+      return;
+    }
+    const t = timeMs * 0.001;
+    const wrapRect = wordmark.getBoundingClientRect();
+    const scaleAmp = Math.max(0.5, Math.min(1, wrapRect.width / 820));
+
+    glyphs.forEach((el, idx) => {
+      const p = presets[idx % presets.length];
+      const baseY = (Math.sin(t * p.speed + p.phase) * p.ampY - 6) * scaleAmp;
+      const baseRot = Math.cos(t * (p.speed * 0.85) + p.phase) * p.rot;
+
+      let targetPx = 0;
+      let targetPy = 0;
+      let targetPr = 0;
+
+      if (pointerInside) {
+        const rect = el.getBoundingClientRect();
+        const cx = rect.left + rect.width * 0.5 - wrapRect.left;
+        const cy = rect.top + rect.height * 0.5 - wrapRect.top;
+        const dx = cx - pointerX;
+        const dy = cy - pointerY;
+        const dist = Math.hypot(dx, dy) || 1;
+        const radius = 220;
+        if (dist < radius) {
+          const strength = Math.pow(1 - dist / radius, 1.5);
+          targetPx = (dx / dist) * strength * 14;
+          targetPy = -strength * 18;
+          targetPr = ((dx / radius) * 5.5) * strength;
+        }
+      }
+
+      const st = states[idx];
+      st.px += (targetPx - st.px) * 0.12;
+      st.py += (targetPy - st.py) * 0.12;
+      st.pr += (targetPr - st.pr) * 0.12;
+
+      el.style.transform = `translate3d(${st.px.toFixed(2)}px, ${(baseY + st.py).toFixed(2)}px, 0) rotate(${(baseRot + st.pr).toFixed(2)}deg)`;
+    });
+
+    rafId = window.requestAnimationFrame(frame);
+  }
+
+  function start() {
+    if (isVisible && rafId === null) {
+      rafId = window.requestAnimationFrame(frame);
+    }
+  }
+
+  wordmark.addEventListener("pointermove", (event) => {
+    const rect = wordmark.getBoundingClientRect();
+    pointerX = event.clientX - rect.left;
+    pointerY = event.clientY - rect.top;
+    pointerInside = true;
+    start();
+  });
+
+  wordmark.addEventListener("pointerleave", () => {
+    pointerInside = false;
+  });
+
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(
+      (entries) => {
+        isVisible = entries[0]?.isIntersecting ?? true;
+        if (isVisible) start();
+      },
+      { threshold: 0.05 }
+    ).observe(wordmark);
+  }
+
+  start();
+}
 
 /**
  * Renders an Antigravity-inspired mouse-reactive field of magnetic flux capsules

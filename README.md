@@ -48,10 +48,10 @@ Then open `http://localhost:8000` in your browser.
 
 | File / Folder | Purpose |
 | :--- | :--- |
-| `index.html` | Main public overview webpage (semantic HTML5, zero build step) |
-| `state-of-the-art.html` | Second page (navbar Research dropdown): paper matrix, technology comparison & SotA gap |
-| `css/styles.css` | Layout, dropdown navigation, typography, tables, and responsive styling |
-| `js/main.js` | Accessible click/Escape/outside-click handling for the navbar dropdown |
+| `index.html` | Main public overview webpage with interactive `#evidence-cta` pre-footer, multi-column footer (`Main Author: Gabriel Ribeiro`), and levitating `MagLink` wordmark |
+| `state-of-the-art.html` | Second page (navbar Research dropdown): paper matrix, technology comparison, SotA gap, and canonical `4. References Cited` (`#references`, `#ref-1`–`#ref-15`) |
+| `css/styles.css` | Layout, dropdown navigation, dark hero/CTA stage, multi-column footer, reactive wordmark, tables, and responsive styling |
+| `js/main.js` | Accessible navbar dropdown handling, magnetic flux particle canvas (`.hero`, `.cta-stage`), CTA scroll-scale effect, and levitating `MagLink` wordmark |
 | `assets/` | Logo, presentation/poster renders (`hero_bimodal_concept.png`, `highway_maglev_*.jpg`), and generated SVG figures (`fig_mode_transition.svg`, `fig_sota_benchmark.svg`) |
 | `scripts/` | Python scripts (`generate_diagrams.py`, parametric corridor estimator) outputting SVG/PNG figures to `assets/` |
 | `.nojekyll` | Disables Jekyll on GitHub Pages so static files serve cleanly |
@@ -88,7 +88,7 @@ Checked against `SEM_2627_v02.pdf` (Sections 12–13). Submission deadline for w
 | **Consortium Alignment & WPs** | Show all partner groups, competencies, Work Packages, and **Grupo 2's specific tasks** (50% consortium / 50% subgroup grade). | **good** | **WP1–WP5**, 24-month Gantt (`fig_workplan_gantt.svg`), and **Suspensão Ativa Preditiva** partner group (Dinis Mano et al., link + 6 members) integrated; confirm person-month (`PM`) split and partner group number if any. |
 | **Literature-Grounded Corridor Estimation** | Preliminary engineering estimates (travel time, energy, CO2 vs. LRT/tram, bus, car) clearly labeled as literature-based estimates. | **to do** | Build parametric Python estimator in `scripts/corridor_estimator.py` and add measurable §3.3 objectives / hero KPI (tracked in **Issue #2**). |
 | **Technical Specs (*Caderno de Encargos*)** | Target KPIs (road speed, curve-limited trunk speed, transition window, mass budget, TRL 2→4), risks & ethics. | **ok** | TRL 2→4 & risk safeguards live on site; lock quantitative mass/stroke/speed KPIs with `Suspensão Ativa Preditiva` and add objective cards (**Issue #2**). |
-| **Webpage (`index.html`, `styles.css`, `state-of-the-art.html`)** | Public, standalone, attractive overview (sum of `Ai1`–`Ac4` so evaluators can review before Dec 9 without reading the full report). | **good** | Layout, interactive hero, dropdown, and responsive checks verified; dedicated visuals to replace reused `highway_maglev_ground.jpg` tracked in **Issue #3**. |
+| **Webpage (`index.html`, `styles.css`, `state-of-the-art.html`)** | Public, standalone, attractive overview (sum of `Ai1`–`Ac4` so evaluators can review before Dec 9 without reading the full report). | **good** | Layout, interactive hero & `#evidence-cta` pre-footer linking to `state-of-the-art.html#references`, company-style footer (`Main Author: Gabriel Ribeiro`), and levitating `MagLink` wordmark verified; custom visuals (**Issue #3**) and personal portfolio/contact customization (**Issue #4**) tracked as open issues. |
 | **`Ag2` Cumulative Integration (Questions + Society Validation)** | Reflect the sum of prior evaluations (`Ai1` + `Ag2` + `Ag3`): broad societal questions + external community/Google Form feedback. | **ok** | Broad societal questions + initial **Proof of Interest (`n = 51`)** SVG chart live on `index.html` (`#proof-of-interest`); deeper PDP-style analysis & integration tracked in open Issue #1. |
 | **Paper Limitations Synthesis** | Clear answers on main work, conclusions, and limitations of all reference papers. | **great** | 15 peer-reviewed papers synthesized across `state-of-the-art.html` & `index.html` (`[1]–[15]`), covering LCA, Maglev EMS/EDS, ART, DRT, AI transit safety/E2E vision vs. LiDAR, partner preview MPC suspension, and docking. |
 
@@ -97,3 +97,4 @@ Checked against `SEM_2627_v02.pdf` (Sections 12–13). Submission deadline for w
 - **Issue #1** — Deeper PDP-style survey analysis & Proof of Interest integration (`#proof-of-interest`).
 - **Issue #2** — Measurable §3.3 R&D objectives, `scripts/corridor_estimator.py` parametric model, and replacing one secondary hero pill with a quantitative corridor KPI (keeping `Dual-Mode`).
 - **Issue #3** — Generate custom technical images/schematics to replace reused `assets/highway_maglev_ground.jpg` across pages.
+- **Issue #4** — Customize footer portfolio project links (`point_cloud_image_box_detection_SAVI_26`, `ppfm_report2_cae`, `psa-pratica`, `AI_tools`), personal contact / email copy button, and optional interactive mode toggle inside `#evidence-cta`.

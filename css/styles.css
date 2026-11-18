@@ -731,17 +731,209 @@ tr:last-child td {
 
 .site-footer {
   border-top: 1px solid var(--border);
-  padding-block: 1.75rem;
-  font-size: 0.9rem;
+  padding-top: 4rem;
+  padding-bottom: 0;
+  font-size: 0.92rem;
   color: var(--muted);
-  text-align: center;
-  background: var(--bg-soft);
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.site-footer--compact {
+  padding-block: 3rem 2rem;
+}
+
+/* Pre-Footer Antigravity-Inspired Interactive CTA Stage */
+.section-cta {
+  padding-block: 2rem 4.5rem;
+}
+
+.cta-stage {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  padding: clamp(2.75rem, 6vw, 4.75rem) clamp(1.5rem, 5vw, 4rem);
+  background:
+    radial-gradient(640px 360px at 85% 20%, rgba(56, 189, 248, 0.16), transparent 65%),
+    radial-gradient(620px 340px at 14% 88%, rgba(37, 99, 235, 0.2), transparent 65%),
+    var(--bg-dark);
+  color: var(--text-light);
+  border: 1px solid var(--border-dark);
+  box-shadow: var(--shadow-lg);
+  transform: scale(var(--cta-scale, 0.95));
+  transition: transform 0.16s ease-out;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-stage {
+    transform: none;
+    transition: none;
+  }
+}
+
+.cta-stage-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+}
+
+.cta-stage h2 {
+  color: #ffffff;
+  font-size: clamp(1.85rem, 3.6vw, 2.85rem);
+  line-height: 1.08;
+  margin-bottom: 1rem;
+}
+
+.cta-stage .lead {
+  color: #cbd5e1;
+  margin-bottom: 1.75rem;
+  max-width: 58ch;
+}
+
+.cta-stage .hero-actions {
+  margin-bottom: 0;
+}
+
+/* Company-Style Multi-Column Footer */
+.footer-top {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.25fr) repeat(3, minmax(150px, 1fr));
+  gap: 2rem 2.5rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .footer-top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-brand-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.footer-brand-copy {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  max-width: 34ch;
+  line-height: 1.55;
+}
+
+.footer-col h3 {
+  margin: 0 0 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.footer-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.footer-col a {
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.93rem;
+  text-decoration: none;
+}
+
+.footer-col a:hover,
+.footer-col a:focus-visible {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.footer-author-row {
+  margin-top: 2.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem 2rem;
+}
+
+.footer-author-block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.55rem 0.9rem;
+}
+
+.footer-author-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.footer-author-name {
+  font-size: clamp(1.35rem, 2.5vw, 1.95rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--text);
+}
+
+.footer-meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Reactive Antigravity-Inspired Bottom Wordmark */
+.footer-wordmark-wrap {
+  margin-top: 1.25rem;
+  padding-top: clamp(1.1rem, 2.8vw, 2.25rem);
+  padding-bottom: clamp(1rem, 2.4vw, 1.85rem);
+  user-select: none;
+}
+
+.footer-wordmark {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0.015em;
+  width: 100%;
+  font-size: clamp(3.25rem, 16.5vw, 13.5rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+  color: var(--text);
+}
+
+.wm-glyph {
+  display: inline-block;
+  will-change: transform;
+  transform-origin: center 75%;
+}
+
+.wm-float {
+  color: var(--text);
 }
 
 .card a,
 td a,
 .ref-list a,
-.site-footer a {
+.footer-meta a {
   color: var(--accent);
   font-weight: 600;
   text-decoration: none;
@@ -753,7 +945,7 @@ td a:hover,
 td a:focus-visible,
 .ref-list a:hover,
 .ref-list a:focus-visible,
-.site-footer a:hover,
-.site-footer a:focus-visible {
+.footer-meta a:hover,
+.footer-meta a:focus-visible {
   text-decoration: underline;
 }
