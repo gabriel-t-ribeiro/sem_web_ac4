@@ -346,8 +346,8 @@ svg {
   color: transparent;
 }
 
-.hero-statement .lead {
-  margin-inline: auto;
+.hero .hero-statement .lead {
+  margin: 0 auto 1.75rem;
   max-width: 60ch;
 }
 
@@ -397,7 +397,7 @@ h1 {
   color: #cbd5e1;
   font-size: 1.08rem;
   max-width: 56ch;
-  margin: 0 auto 1.75rem;
+  margin: 0 0 1.75rem;
 }
 
 .lead {
@@ -736,4 +736,15 @@ tr:last-child td {
   color: var(--muted);
   text-align: center;
   background: var(--bg-soft);
+}
+
+.site-footer a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  text-decoration: underline;
 }

@@ -230,20 +230,20 @@ def build_workplan_gantt_svg() -> str:
 def build_survey_proof_of_interest_svg() -> str:
     # Exact exploratory Ag2 survey counts (n = 51, fielded Oct 2-7, 2026)
     demand_bars = [
-        ("Transfer-free travel (Q7 &#8805;4/5)", 94.1, "94.1% · 4.67/5", "#2563eb"),
-        ("Network interest (Q14 &#8805;4/5)", 80.4, "80.4% · 4.10/5", "#0284c7"),
-        ("Bimodal willingness (Q6)", 70.6, "70.6% · 0% No", "#0d9488"),
-        ("Driverless willingness (Q4)", 64.7, "64.7% · 19.6% No", "#475569"),
-        ("Autonomous comfort (Q5 &#8805;4/5)", 47.1, "47.1% · 3.43/5", "#d97706"),
+        ("Transfer-free travel (&#8805;4/5)", 94.1, "94.1% · 4.67/5", "#2563eb"),
+        ("Future network interest (&#8805;4/5)", 80.4, "80.4% · 4.10/5", "#0284c7"),
+        ("Bimodal road-to-Maglev use", 70.6, "70.6% · 0% No", "#0d9488"),
+        ("Driverless transit use", 64.7, "64.7% · 19.6% No", "#475569"),
+        ("Autonomous comfort (&#8805;4/5)", 47.1, "47.1% · 3.43/5", "#d97706"),
     ]
     driver_bars = [
-        ("Fare price top factor (Q8)", 82.4, "82.4% (42/51)", "#0f4c81"),
-        ("Price&#8211;time balance (Q13)", 82.4, "82.4% (42/51)", "#1d4ed8"),
-        ("Remote oversight &#8805;4/5 (Q10)", 82.4, "82.4% · 4.31/5", "#0284c7"),
-        ("Safety top factor (Q8)", 76.5, "76.5% (39/51)", "#0369a1"),
-        ("Public tests (Q11 &#8594; WP5)", 66.7, "66.7% (34/51)", "#0d9488"),
-        ("Redundancy (Q11 &#8594; WP2)", 49.0, "49.0% (25/51)", "#0f766e"),
-        ("Autonomy fear (Q9 &#8594; WP2/4)", 45.1, "45.1% (23/51)", "#b45309"),
+        ("Top factor: fare price", 82.4, "82.4% (42/51)", "#0f4c81"),
+        ("Prefer price&#8211;time balance", 82.4, "82.4% (42/51)", "#1d4ed8"),
+        ("Remote oversight (&#8805;4/5)", 82.4, "82.4% · 4.31/5", "#0284c7"),
+        ("Top factor: safety", 76.5, "76.5% (39/51)", "#0369a1"),
+        ("Public tests &#8594; WP5", 66.7, "66.7% (34/51)", "#0d9488"),
+        ("Redundancy &#8594; WP2", 49.0, "49.0% (25/51)", "#0f766e"),
+        ("Autonomy fear &#8594; WP2/4", 45.1, "45.1% (23/51)", "#b45309"),
     ]
 
     left_rows = []

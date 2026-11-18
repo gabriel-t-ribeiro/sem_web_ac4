@@ -4,6 +4,9 @@
 .vscode/
 .idea/
 
+# Local course source documents (keep private out of public repo)
+sem_sources/
+
 # Python (for figure/asset generation scripts)
 __pycache__/
 *.py[cod]
