@@ -1,0 +1,13 @@
+# OS & Editor
+.DS_Store
+**/.DS_Store
+.vscode/
+.idea/
+
+# Python (for figure/asset generation scripts)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
