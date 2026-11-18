@@ -1,6 +1,7 @@
 """Generate clean, publication-grade SVG engineering diagrams for MagLink Ac4."""
 
 from pathlib import Path
+from xml.sax.saxutils import escape
 
 ASSETS_DIR = Path(__file__).resolve().parent.parent / "assets"
 ASSETS_DIR.mkdir(parents=True, exist_ok=True)
@@ -109,9 +110,9 @@ def write_sota_benchmark_svg() -> None:
     for label, speed, color, note in bars:
         w = int((speed / max_speed) * max_w)
         rows.append(
-            f'<text class="lbl" x="{x0 - 12}" y="{y + 19}" text-anchor="end">{label}</text>'
+            f'<text class="lbl" x="{x0 - 12}" y="{y + 19}" text-anchor="end">{escape(label)}</text>'
             f'<rect x="{x0}" y="{y}" width="{w}" height="28" rx="5" fill="{color}"/>'
-            f'<text class="val" x="{x0 + w + 10}" y="{y + 19}">{note}</text>'
+            f'<text class="val" x="{x0 + w + 10}" y="{y + 19}">{escape(note)}</text>'
         )
         y += 46
 
