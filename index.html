@@ -13,7 +13,10 @@
 
   <header class="site-header">
     <nav class="container nav-bar" aria-label="Primary navigation">
-      <a class="brand" href="index.html">MagLink</a>
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="assets/logo_smart_mobility.png" alt="MagLink Smart Mobility logo">
+        <span>MagLink</span>
+      </a>
       <ul class="nav-links">
         <li><a href="index.html" aria-current="page">Overview</a></li>
         <li class="nav-dropdown">
@@ -37,42 +40,75 @@
 
   <main id="main-content">
     <section id="top" class="hero">
-      <div class="container">
-        <p class="eyebrow">SEM 2026/2027 &middot; IID-EM Research &amp; Innovation Proposal</p>
-        <h1>MagLink: Bimodal Autonomous Transit Linking Local Roads &amp; Open Highway Maglev</h1>
-        <p class="lead">
-          A public transit architecture designed to outperform conventional trams and Light Rail Transit (LRT) on regional and intercity corridors—combining autonomous Vision + LiDAR road driving and V2I smart skip-stop routing with high-speed, contactless travel on open highway Maglev lanes, without building new steel railways from scratch.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="state-of-the-art.html">Explore State of the Art &amp; Paper Matrix &rarr;</a>
-          <a class="btn btn-secondary" href="#consortium">View Consortium &amp; Roles</a>
+      <div class="container hero-split">
+        <div>
+          <p class="eyebrow">SEM 2026/2027 &middot; IID-EM Research &amp; Innovation Proposal</p>
+          <h1>MagLink: Bimodal Autonomous Transit Linking Local Roads &amp; Open Highway Maglev</h1>
+          <p class="lead">
+            A public transit architecture designed to compete with trams and Light Rail Transit (LRT) on regional and intercity corridors—combining autonomous Vision + LiDAR road driving and V2I smart skip-stop routing with high-speed, contactless travel on open highway Maglev lanes, without building new steel railways from scratch.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="state-of-the-art.html">State of the Art &amp; Paper Matrix &rarr;</a>
+            <a class="btn btn-secondary" href="#concept">See Architecture &amp; Visuals</a>
+          </div>
+          <div class="kpi-grid" aria-label="Target project indicators">
+            <article class="kpi-card">
+              <span class="kpi-value">2 Modes</span>
+              <span class="kpi-label">Wheeled local/urban roads &harr; Open highway Maglev lane</span>
+            </article>
+            <article class="kpi-card">
+              <span class="kpi-value">0 New Rail</span>
+              <span class="kpi-label">Reuses existing highways to avoid HSR embodied CO<sub>2</sub> [1]</span>
+            </article>
+            <article class="kpi-card">
+              <span class="kpi-value">[Est. KPI]</span>
+              <span class="kpi-label">Literature-based corridor benchmark (to be computed)</span>
+            </article>
+          </div>
         </div>
-        <div class="kpi-grid" aria-label="Target project indicators">
-          <article class="kpi-card">
-            <span class="kpi-value">2 Modes</span>
-            <span class="kpi-label">Wheeled local/urban roads &harr; Open highway Maglev lane</span>
-          </article>
-          <article class="kpi-card">
-            <span class="kpi-value">0 New Rail</span>
-            <span class="kpi-label">Leverages existing highway corridors to avoid HSR embodied CO<sub>2</sub> [1]</span>
-          </article>
-          <article class="kpi-card">
-            <span class="kpi-value">[Est. KPI]</span>
-            <span class="kpi-label">Literature-based corridor time &amp; energy benchmark (to be computed)</span>
-          </article>
-        </div>
+
+        <figure class="figure-card">
+          <img src="assets/hero_bimodal_concept.png" alt="Concept render of an autonomous bimodal transit vehicle transitioning between conventional road operation and an elevated magnetic levitation corridor">
+          <figcaption>
+            <strong>Figure 1.</strong> MagLink operational vision: autonomous wheeled circulation on local roads transitioning onto a contactless highway Maglev trunk lane (from Presentation 1 / <code>Ag2</code>).
+          </figcaption>
+        </figure>
       </div>
     </section>
 
     <section id="problem" class="section">
       <div class="container">
-        <h2>1. The Real Problem &amp; System Boundary</h2>
+        <h2>1. The Real Problem, Essential Questions &amp; System Boundary</h2>
         <p>
-          Urban and regional rail systems (trams, LRTs, and high-speed rail) face a structural trade-off: dedicated steel tracks deliver high capacity and speed, yet incur massive construction costs and upfront embodied CO<sub>2</sub> emissions [1], while road buses and Autonomous-Rail Rapid Transit (ART) remain speed-limited (~70&nbsp;km/h) and stop-bound [3]. Rather than attempting to invent new autonomous driving AI or construct dedicated railway corridors from scratch, <strong>MagLink</strong> targets the core mechanical and systems bottleneck of a realistic 20-year transit horizon:
+          Urban and regional rail systems (trams, LRTs, and high-speed rail) face a structural trade-off: dedicated steel tracks deliver high capacity and speed, yet carry massive civil construction costs and upfront embodied CO<sub>2</sub> [1], while road buses and Autonomous-Rail Rapid Transit (ART) remain capped around 60–70&nbsp;km/h [3]. Grounded in our Challenge-Based Learning (CBL+) progression (<code>Ai1</code> &rarr; <code>Ag2</code> &rarr; <code>Ag3</code>), <strong>MagLink</strong> targets the core mechanical bottleneck of a realistic 20-year horizon:
         </p>
 
         <div class="callout">
           <strong>Primary Mechanical R&amp;D Bottleneck:</strong> Designing and validating the <em>bimodal wheel-to-Maglev transition mechanism</em>—integrating adaptive controlled suspension with magnetic bogies to manage dead-weight, control chassis height and pitch into millimeter-scale airgap tolerances, and guarantee fail-safe mode switching at highway entry/exit.
+        </div>
+
+        <h3 class="subhead">CBL+ Essential Questions Driving the Project (<code>Ag2</code>)</h3>
+        <div class="eq-grid">
+          <article class="card">
+            <span class="badge">Q1 &middot; Sustainability</span>
+            <h3>Zero Greenfield Rail</h3>
+            <p class="muted">How can we cut travel time and emissions on regional/international corridors without building new railways from scratch? &rarr; <em>Reuse existing highways [1].</em></p>
+          </article>
+          <article class="card">
+            <span class="badge">Q2 &middot; Efficiency</span>
+            <h3>Speed &amp; Ride Comfort</h3>
+            <p class="muted">How do we break conventional road speed and rolling-friction limits while minimizing energy waste? &rarr; <em>Contactless highway Maglev [2].</em></p>
+          </article>
+          <article class="card">
+            <span class="badge">Q3 &middot; Accessibility</span>
+            <h3>Autonomous Local Stops</h3>
+            <p class="muted">How can a fast trunk service respond to peripheral communities on demand? &rarr; <em>Wheeled Vision + LiDAR exit &amp; V2I smart stops [3, 4].</em></p>
+          </article>
+          <article class="card">
+            <span class="badge">Q4 &middot; Society &amp; Viability</span>
+            <h3>Community &amp; Economics</h3>
+            <p class="muted">How do we ensure economic viability vs. LRT/tram and align with real commuter needs? &rarr; <em>Google Form society survey (results slot to integrate).</em></p>
+          </article>
         </div>
 
         <div class="table-wrap">
@@ -108,7 +144,7 @@
 
     <section id="concept" class="section section-alt">
       <div class="container">
-        <h2>2. Technical Concept &amp; Subsystem Integration</h2>
+        <h2>2. Technical Concept &amp; Subsystem Architecture</h2>
         <div class="card-grid">
           <article class="card">
             <span class="badge">Mode 1 &middot; Local &amp; Urban</span>
@@ -131,6 +167,28 @@
               Glides friction-free on an open highway magnetic lane [2]. Follows a predefined corridor route and uses Vehicle-to-Infrastructure (V2I) station sensors to skip empty stops, cutting energy waste and door-to-door time [4].
             </p>
           </article>
+        </div>
+
+        <figure class="figure-card figure-card--diagram">
+          <img src="assets/fig_mode_transition.svg" alt="MagLink three-stage operational flow diagram from local wheeled autonomous driving through adaptive suspension handoff to open highway Maglev operation">
+          <figcaption>
+            <strong>Figure 2.</strong> MagLink bimodal architecture and subsystem handoff—highlighting the adaptive suspension transition zone co-developed within the consortium.
+          </figcaption>
+        </figure>
+
+        <div class="figure-grid">
+          <figure class="figure-card">
+            <img src="assets/highway_maglev_ground.jpg" alt="Concept render of an autonomous transit pod levitating on a flush ground-level magnetic track embedded in an existing highway lane">
+            <figcaption>
+              <strong>Figure 3a.</strong> Ground-level open highway Maglev lane integration alongside conventional mixed traffic (from <code>Ag3</code> Poster).
+            </figcaption>
+          </figure>
+          <figure class="figure-card">
+            <img src="assets/highway_maglev_median.jpg" alt="Concept render of an autonomous Maglev transit pod operating in a dedicated highway median lane">
+            <figcaption>
+              <strong>Figure 3b.</strong> Dedicated highway median Maglev corridor configuration avoiding new standalone railway alignments (from <code>Ag3</code> Poster).
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>

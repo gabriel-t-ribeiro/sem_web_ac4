@@ -4,7 +4,7 @@ Public project webpage for **Seminários em Engenharia Mecânica (SEM 2026/2027)
 
 **Project Acronym:** `MagLink`  
 **Working Title:** *MagLink: Bimodal Autonomous Public Transit Linking Local Roads and Open Highway Maglev Corridors*  
-**Language:** English (chosen for international R&D framing and portfolio use; confirm EN acceptance with faculty).
+**Language:** English (**confirmed with professor on 18/11/2026**; aligns with international R&D framing and portfolio use).
 
 ---
 
@@ -52,8 +52,8 @@ Then open `http://localhost:8000` in your browser.
 | `state-of-the-art.html` | Second page (navbar Research dropdown): paper matrix, technology comparison & SotA gap |
 | `css/styles.css` | Layout, dropdown navigation, typography, tables, and responsive styling |
 | `js/main.js` | Accessible click/Escape/outside-click handling for the navbar dropdown |
-| `assets/` | Figures, system architecture diagrams, Gantt charts, and plots |
-| `scripts/` | Python scripts (e.g., parametric corridor estimator, Matplotlib/Plotly charts) outputting to `assets/` |
+| `assets/` | Logo, presentation/poster renders (`hero_bimodal_concept.png`, `highway_maglev_*.jpg`), and generated SVG figures (`fig_mode_transition.svg`, `fig_sota_benchmark.svg`) |
+| `scripts/` | Python scripts (`generate_diagrams.py`, parametric corridor estimator) outputting SVG/PNG figures to `assets/` |
 | `.nojekyll` | Disables Jekyll on GitHub Pages so static files serve cleanly |
 
 ---
@@ -86,5 +86,6 @@ Checked against `SEM_2627_v02.pdf` (Sections 12–13). Submission deadline for w
 | **Consortium Alignment & WPs** | Show all partner groups, competencies, Work Packages, and **Grupo 2's specific tasks** (50% consortium / 50% subgroup grade). | **ok** | **Grupo 2** (6 members) & **Adaptive Controlled Suspension collaborator** identified; exact partner group #s, other partners (if any), and formal WP split still `to do`. |
 | **Literature-Grounded Corridor Estimation** | Preliminary engineering estimates (travel time, energy, CO2 vs. LRT/tram, bus, car) clearly labeled as literature-based estimates. | **to do** | **New task saved:** Build parametric Python estimator in `scripts/` using Chen (2021), Feng (2024), Fadlelseed (2025), and Lee (2006) parameters, outputting comparison charts to `assets/`. |
 | **Technical Specs (*Caderno de Encargos*)** | Target KPIs (road speed, highway Maglev speed, transition window, mass budget, TRL 2→4), risks & ethics. | **to do** | Define parameter ranges with the Adaptive Suspension partner group. |
-| **Webpage (`index.html`, `styles.css`)** | Public, standalone, attractive overview so external evaluators can review before Dec 9 without reading the full report. | **ok** | Updated with **MagLink** scope, system boundary, Grupo 2 roster, and verified `[1]–[4]` references; charts/WPs pending. |
+| **Webpage (`index.html`, `styles.css`, `state-of-the-art.html`)** | Public, standalone, attractive overview (sum of `Ai1`–`Ac4` so evaluators can review before Dec 9 without reading the full report). | **ok** | English confirmed (18/11/2026). Structure, system boundary, Grupo 2 roster, and `[1]–[4]` SotA page are live; still missing **diagrams/charts**, **WP Gantt**, and **`Ag2` society-validation results**. |
+| **`Ag2` Cumulative Integration (Questions + Society Validation)** | Reflect the sum of prior evaluations (`Ai1` + `Ag2` + `Ag3`): 3 Essential Questions + external community/Google Form feedback. | **to do** | Add the 3 Essential Questions and summary stats/insights from the `Ag2` Google Form survey onto the site. |
 | **Paper Limitations Synthesis** | Clear answers on main work, conclusions, and limitations of all reference papers. | **ok** | 4 poster papers summarized above; still need partner suspension papers + mode-transition paper. |

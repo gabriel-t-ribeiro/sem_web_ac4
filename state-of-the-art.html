@@ -13,7 +13,10 @@
 
   <header class="site-header">
     <nav class="container nav-bar" aria-label="Primary navigation">
-      <a class="brand" href="index.html">MagLink</a>
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="assets/logo_smart_mobility.png" alt="MagLink Smart Mobility logo">
+        <span>MagLink</span>
+      </a>
       <ul class="nav-links">
         <li><a href="index.html">Overview</a></li>
         <li class="nav-dropdown">
@@ -38,10 +41,10 @@
   <main id="main-content">
     <section class="hero hero-compact">
       <div class="container">
-        <p class="eyebrow">MagLink &middot; Research Foundation</p>
+        <p class="eyebrow">MagLink &middot; Research Foundation (<code>Ag3</code>)</p>
         <h1>State of the Art &amp; Reference Paper Analysis</h1>
         <p class="lead">
-          Critical synthesis of the four core literature pillars supporting MagLink—explicitly mapping each paper's main contribution, key conclusions, and unresolved limitations to our consortium's R&amp;D scope.
+          Critical synthesis of the four core literature pillars supporting MagLink—explicitly mapping each paper's main work, key conclusions, and unresolved limitations to our consortium's R&amp;D scope.
         </p>
       </div>
     </section>
@@ -152,6 +155,21 @@
           Synthesized from Feng et al. (2024, Table&nbsp;5) [3], Lee et al. (2006) [2], and Chen et al. (2021) [1], showing why MagLink targets the gap between urban LRT/ART and dedicated rail.
         </p>
 
+        <div class="figure-grid">
+          <figure class="figure-card figure-card--diagram">
+            <img src="assets/fig_sota_benchmark.svg" alt="Horizontal bar chart comparing published operating speeds of BRT, Tram/LRT, ART, Subway, and Maglev against MagLink's dual-regime target">
+            <figcaption>
+              <strong>Figure 4.</strong> Published operating speeds vs. infrastructure dependency across transit modes [2, 3].
+            </figcaption>
+          </figure>
+          <figure class="figure-card">
+            <img src="assets/shanghai_maglev_benchmark.jpg" alt="Shanghai commercial Maglev train on dedicated elevated guideway">
+            <figcaption>
+              <strong>Figure 5.</strong> Commercial benchmark: Shanghai Transrapid Maglev—proves high-speed contactless efficiency, yet remains isolated on a dedicated closed guideway [2] (from <code>Ag3</code> Poster).
+            </figcaption>
+          </figure>
+        </div>
+
         <div class="table-wrap">
           <table>
             <thead>
@@ -207,7 +225,7 @@
 
     <section id="research-gap" class="section">
       <div class="container">
-        <h2>3. Resulting Research Gap &amp; Consortium Motivation</h2>
+        <h2>3. Research Gap &amp; Six Engineering Domains</h2>
         <div class="card-grid">
           <article class="card">
             <h3>1. Literature Works in Silos</h3>
@@ -226,6 +244,34 @@
             <p>
               Using parameters from [1–4], our next milestone is a literature-grounded Python corridor model estimating travel time, energy per passenger-km, and lifecycle CO<sub>2</sub> against LRT/tram and conventional bus baselines.
             </p>
+          </article>
+        </div>
+
+        <h3 class="subhead">Technical &amp; Scientific Research Domains Identified (<code>Ag2</code>)</h3>
+        <div class="card-grid">
+          <article class="card">
+            <h4>Applied Physics &amp; Levitation</h4>
+            <p class="muted">Electromagnetism, EMS/EDS guideway compatibility, vibration &amp; acceleration control.</p>
+          </article>
+          <article class="card">
+            <h4>Automotive &amp; Mechanical Chassis</h4>
+            <p class="muted">Landing/retraction mechanisms, adaptive suspension leveling, electric propulsion.</p>
+          </article>
+          <article class="card">
+            <h4>Civil &amp; Highway Integration</h4>
+            <p class="muted">Open Maglev lane retrofits on highways, transition ramps, and smart-stop terminals.</p>
+          </article>
+          <article class="card">
+            <h4>AI &amp; Autonomous Driving</h4>
+            <p class="muted">Vision + LiDAR perception, trajectory planning, real-time V2V/V2I decision-making.</p>
+          </article>
+          <article class="card">
+            <h4>Electronics &amp; Power Systems</h4>
+            <p class="muted">Contactless power transfer, energy management, and high-power storage buffers.</p>
+          </article>
+          <article class="card">
+            <h4>Behavioral &amp; Corridor Modeling</h4>
+            <p class="muted">Multibody vehicle dynamics, demand simulation, and corridor LCA benchmarking.</p>
           </article>
         </div>
       </div>

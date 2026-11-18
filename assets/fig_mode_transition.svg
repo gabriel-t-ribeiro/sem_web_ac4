@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 340" role="img" aria-labelledby="mt-title mt-desc">
+  <title id="mt-title">MagLink Bimodal Wheel-to-Maglev Transition Architecture</title>
+  <desc id="mt-desc">Three-stage operational flow showing local wheeled autonomous driving, adaptive suspension transition handoff, and open highway Maglev operation with V2I smart skip-stop.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.8; rx: 12; }
+      .box-accent { fill: #eef6ff; stroke: #0f4c81; stroke-width: 2.2; rx: 12; }
+      .pill-1 { fill: #e0ecf7; }
+      .pill-2 { fill: #fef3c7; }
+      .pill-3 { fill: #dcfce7; }
+      .h-title { font-family: system-ui, -apple-system, sans-serif; font-size: 16px; font-weight: 700; fill: #0f172a; }
+      .pill-txt { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; fill: #0f4c81; }
+      .pill-txt-2 { fill: #92400e; }
+      .pill-txt-3 { fill: #166534; }
+      .body-txt { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #334155; }
+      .sub-txt { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; fill: #475569; }
+      .arrow { stroke: #0f4c81; stroke-width: 2.5; fill: none; marker-end: url(#arrowhead); }
+      .arrow-rev { stroke: #64748b; stroke-width: 2; stroke-dasharray: 5 4; fill: none; marker-end: url(#arrowhead-muted); }
+      .band { fill: #0f4c81; rx: 8; }
+      .band-txt { font-family: system-ui, -apple-system, sans-serif; font-size: 12.5px; font-weight: 600; fill: #ffffff; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#0f4c81"/>
+    </marker>
+    <marker id="arrowhead-muted" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="960" height="340" rx="14"/>
+
+  <!-- Stage 1 -->
+  <rect class="box" x="24" y="26" width="272" height="224" rx="12"/>
+  <rect class="pill-1" x="40" y="42" width="150" height="22" rx="11"/>
+  <text class="pill-txt" x="52" y="57">MODE 1 · LOCAL ROADS</text>
+  <text class="h-title" x="40" y="88">Wheeled Autonomous Transit</text>
+  <text class="body-txt" x="40" y="114">• Rubber-tire steering &amp; traction</text>
+  <text class="body-txt" x="40" y="136">• Vision + LiDAR 3D point clouds</text>
+  <text class="body-txt" x="40" y="158">• Virtual-track urban guidance [3]</text>
+  <text class="body-txt" x="40" y="180">• Serves peripheral &amp; local stops</text>
+  <text class="sub-txt" x="40" y="216">Priority: Maneuverability &amp; safety</text>
+  <text class="sub-txt" x="40" y="234">Infrastructure: Existing streets</text>
+
+  <!-- Stage 2 (Core R&D Bottleneck) -->
+  <rect class="box-accent" x="344" y="26" width="272" height="224" rx="12"/>
+  <rect class="pill-2" x="360" y="42" width="186" height="22" rx="11"/>
+  <text class="pill-txt pill-txt-2" x="372" y="57">CORE R&amp;D · TRANSITION ZONE</text>
+  <text class="h-title" x="360" y="88">Adaptive Suspension Handoff</text>
+  <text class="body-txt" x="360" y="114">• Road-preview active leveling</text>
+  <text class="body-txt" x="360" y="136">• Height &amp; pitch airgap capture</text>
+  <text class="body-txt" x="360" y="158">• Smooth wheel load transfer</text>
+  <text class="body-txt" x="360" y="180">• Mechanical fail-safe latching</text>
+  <text class="sub-txt" x="360" y="216">Collab: Grupo 2 + Adaptive Susp.</text>
+  <text class="sub-txt" x="360" y="234">Target: Zero passenger jolt</text>
+
+  <!-- Stage 3 -->
+  <rect class="box" x="664" y="26" width="272" height="224" rx="12"/>
+  <rect class="pill-3" x="680" y="42" width="172" height="22" rx="11"/>
+  <text class="pill-txt pill-txt-3" x="692" y="57">MODE 2 · OPEN HIGHWAY</text>
+  <text class="h-title" x="680" y="88">Maglev Trunk &amp; Smart Stops</text>
+  <text class="body-txt" x="680" y="114">• Open highway magnetic lane [2]</text>
+  <text class="body-txt" x="680" y="136">• Zero rolling friction &amp; low wear</text>
+  <text class="body-txt" x="680" y="158">• V2I station passenger detection</text>
+  <text class="body-txt" x="680" y="180">• Skips empty stops dynamically [4]</text>
+  <text class="sub-txt" x="680" y="216">Priority: Speed &amp; energy/p-km</text>
+  <text class="sub-txt" x="680" y="234">Infrastructure: Highway retrofit [1]</text>
+
+  <!-- Arrows -->
+  <line class="arrow" x1="298" y1="122" x2="340" y2="122"/>
+  <line class="arrow" x1="618" y1="122" x2="660" y2="122"/>
+  <line class="arrow-rev" x1="660" y1="154" x2="620" y2="154"/>
+  <line class="arrow-rev" x1="340" y1="154" x2="300" y2="154"/>
+
+  <!-- Bottom cross-cutting bar -->
+  <rect class="band" x="24" y="272" width="912" height="44" rx="8"/>
+  <text class="band-txt" x="480" y="299" text-anchor="middle">
+    Continuous Supervisory Layer: Vision + LiDAR Sensor Fusion · V2I Smart-Stop Dispatch · Fail-Safe Wheel Fallback
+  </text>
+</svg>
