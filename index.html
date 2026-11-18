@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>[ACRONYM] — SEM Consortium IID-EM Project</title>
-  <meta name="description" content="Public overview of the SEM 2026/2027 consortium R&D proposal (Ac4).">
+  <title>MagLink — Bimodal Autonomous Hybrid Transit | SEM 2026/2027</title>
+  <meta name="description" content="MagLink: Bimodal autonomous public transit linking local road driving and open highway magnetic levitation corridors (SEM 2026/2027 IID-EM Proposal).">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -12,12 +12,12 @@
 
   <header class="site-header">
     <nav class="container nav-bar" aria-label="Primary navigation">
-      <a class="brand" href="#top">[ACRONYM]</a>
+      <a class="brand" href="#top">MagLink</a>
       <ul class="nav-links">
-        <li><a href="#problem">Problem &amp; Gap</a></li>
-        <li><a href="#solution">Concept</a></li>
+        <li><a href="#problem">Problem &amp; Boundary</a></li>
+        <li><a href="#concept">Technical Concept</a></li>
         <li><a href="#consortium">Consortium &amp; Plan</a></li>
-        <li><a href="#impact">Impact</a></li>
+        <li><a href="#impact">Impact &amp; Ethics</a></li>
         <li><a href="#references">References</a></li>
       </ul>
     </nav>
@@ -27,22 +27,22 @@
     <section id="top" class="hero">
       <div class="container">
         <p class="eyebrow">SEM 2026/2027 &middot; IID-EM Research &amp; Innovation Proposal</p>
-        <h1>[Full Project Title]</h1>
+        <h1>MagLink: Bimodal Autonomous Transit Linking Local Roads &amp; Open Highway Maglev</h1>
         <p class="lead">
-          [One-sentence executive summary of the real engineering problem, the proposed R&amp;D solution, and its target impact.]
+          A public transit architecture designed to outperform conventional trams and Light Rail Transit (LRT) on regional and intercity corridors—combining autonomous Vision + LiDAR road driving and V2I smart skip-stop routing with high-speed, contactless travel on open highway Maglev lanes, without building new steel railways from scratch.
         </p>
         <div class="kpi-grid" aria-label="Target project indicators">
           <article class="kpi-card">
-            <span class="kpi-value">[KPI 1]</span>
-            <span class="kpi-label">[Metric description, e.g., Target energy reduction]</span>
+            <span class="kpi-value">2 Modes</span>
+            <span class="kpi-label">Wheeled local/urban roads &harr; Open highway Maglev lane</span>
           </article>
           <article class="kpi-card">
-            <span class="kpi-value">[KPI 2]</span>
-            <span class="kpi-label">[Metric description, e.g., Project duration in months]</span>
+            <span class="kpi-value">0 New Rail</span>
+            <span class="kpi-label">Leverages existing highway corridors to avoid HSR embodied CO<sub>2</sub> [1]</span>
           </article>
           <article class="kpi-card">
-            <span class="kpi-value">[KPI 3]</span>
-            <span class="kpi-label">[Metric description, e.g., Target TRL progression]</span>
+            <span class="kpi-value">[Est. KPI]</span>
+            <span class="kpi-label">Literature-based corridor time &amp; energy benchmark (to be computed)</span>
           </article>
         </div>
       </div>
@@ -50,36 +50,101 @@
 
     <section id="problem" class="section">
       <div class="container">
-        <h2>1. The Real Problem &amp; State-of-the-Art Gap</h2>
+        <h2>1. The Real Problem &amp; System Boundary</h2>
         <p>
-          [Define the societal/industrial bottleneck, why current solutions fall short, and the specific technical gap identified in the consortium's SotA review.]
+          Urban and regional rail systems (trams, LRTs, and high-speed rail) face a structural trade-off: dedicated steel tracks deliver high capacity and speed, yet incur massive construction costs and upfront embodied CO<sub>2</sub> emissions [1], while road buses and Autonomous-Rail Rapid Transit (ART) remain speed-limited (~70&nbsp;km/h) and stop-bound [3]. Rather than attempting to invent new autonomous driving AI or construct dedicated railway corridors from scratch, <strong>MagLink</strong> targets the core mechanical and systems bottleneck of a realistic 20-year transit horizon:
         </p>
+
+        <div class="callout">
+          <strong>Primary Mechanical R&amp;D Bottleneck:</strong> Designing and validating the <em>bimodal wheel-to-Maglev transition mechanism</em>—integrating adaptive controlled suspension with magnetic bogies to manage dead-weight, control chassis height and pitch into millimeter-scale airgap tolerances, and guarantee fail-safe mode switching at highway entry/exit.
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>In Scope (MagLink Consortium R&amp;D)</th>
+                <th>Assumed External Ecosystem (20-Year Horizon)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Bimodal vehicle chassis &amp; wheel &harr; Maglev transition mechanism</td>
+                <td>Open, standardized highway Maglev lane (shared by transit &amp; freight)</td>
+              </tr>
+              <tr>
+                <td>Adaptive controlled suspension for road comfort &amp; airgap alignment</td>
+                <td>Base Vision + LiDAR autonomous driving stack maturing in industry</td>
+              </tr>
+              <tr>
+                <td>V2I smart-stop passenger detection &amp; skip-stop corridor operation</td>
+                <td>Existing highway &amp; national road civil corridors [1]</td>
+              </tr>
+              <tr>
+                <td>Literature-grounded corridor estimation (time, energy, CO<sub>2</sub>, TRL)</td>
+                <td>&mdash;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
-    <section id="solution" class="section section-alt">
+    <section id="concept" class="section section-alt">
       <div class="container">
-        <h2>2. Technical Concept &amp; System Architecture</h2>
-        <p>
-          [Present the proposed engineering architecture, key design trade-offs, and how the subsystems interact.]
-        </p>
+        <h2>2. Technical Concept &amp; Subsystem Integration</h2>
+        <div class="card-grid">
+          <article class="card">
+            <span class="badge">Mode 1 &middot; Local &amp; Urban</span>
+            <h3>Autonomous Wheeled Operation</h3>
+            <p>
+              Operates on national and urban streets with rubber-tire maneuverability (inspired by ART virtual-track steering [3]), using camera + LiDAR 3D point-cloud fusion to serve peripheral stops without fixed steel rails.
+            </p>
+          </article>
+          <article class="card">
+            <span class="badge">Transition Core</span>
+            <h3>Adaptive Suspension &amp; Mode Handoff</h3>
+            <p>
+              Collaborating adaptive controlled suspension (predictive road-preview leveling) stabilizes the chassis on rough roads and actively controls ride height, pitch, and wheel unloading during Maglev guideway engagement.
+            </p>
+          </article>
+          <article class="card">
+            <span class="badge">Mode 2 &middot; Highway Trunk</span>
+            <h3>Open Maglev &amp; Smart V2I Stops</h3>
+            <p>
+              Glides friction-free on an open highway magnetic lane [2]. Follows a predefined corridor route and uses Vehicle-to-Infrastructure (V2I) station sensors to skip empty stops, cutting energy waste and door-to-door time [4].
+            </p>
+          </article>
+        </div>
       </div>
     </section>
 
     <section id="consortium" class="section">
       <div class="container">
-        <h2>3. Consortium &amp; Work Plan</h2>
+        <h2>3. Consortium, Team &amp; Work Plan</h2>
         <p>
-          [Introduce the partner groups, their competencies, Work Packages (WPs), milestones, and deliverables.]
+          MagLink is structured as an interdisciplinary mechanical engineering consortium combining vehicle/transit systems architecture with active suspension control.
         </p>
         <div class="card-grid">
           <article class="card">
-            <h3>Grupo 2 &mdash; [Your Subgroup Role]</h3>
-            <p>[Core responsibilities, engineering deliverables, and tasks owned by Grupo 2.]</p>
+            <span class="badge">Grupo 2 &middot; Core Proponent</span>
+            <h3>Bimodal Architecture, Transition &amp; Corridor Integration</h3>
+            <p>
+              <strong>Team:</strong> Matilde Romano (113441), Eduardo Duarte (109361), Guilherme Lopes (113453), Lucas Fonseca (107362), Diogo Pedrosa (113902), Gabriel Ribeiro (113162).
+            </p>
+            <p class="muted">
+              <em>Owned WPs (to finalize):</em> Requirements &amp; bimodal architecture, wheel &harr; Maglev transition concept, V2I skip-stop logic, and literature-based corridor simulation.
+            </p>
           </article>
           <article class="card">
-            <h3>Partner Group B &mdash; [Role]</h3>
-            <p>[Core responsibilities and WP ownership.]</p>
+            <span class="badge">Partner Group &middot; To Confirm</span>
+            <h3>Adaptive Controlled Suspension</h3>
+            <p>
+              <strong>Focus:</strong> Predictive active suspension (camera/LiDAR preview, vertical/roll control) enabling both road ride quality and precision height/airgap alignment during Maglev entry and exit.
+            </p>
+            <p class="muted">
+              <em>Status:</em> Partner group ID, members, and formal WP split to be added in Week 10.
+            </p>
           </article>
         </div>
       </div>
@@ -87,19 +152,38 @@
 
     <section id="impact" class="section section-alt">
       <div class="container">
-        <h2>4. Expected Impact, Ethics &amp; Validation</h2>
-        <p>
-          [Summarize long-term socioeconomic/environmental impact, validation/testing strategy, and ethical/safety considerations.]
-        </p>
+        <h2>4. Expected Impact, Validation &amp; Ethics</h2>
+        <div class="card-grid">
+          <article class="card">
+            <h3>LRT / Tram Alternative Without Rail Capex</h3>
+            <p>
+              Targets regional and inter-municipal corridors (competing with LRT/tram networks such as Coimbra-style systems) by pairing highway trunk speed with local street capillarity, avoiding greenfield rail construction emissions [1].
+            </p>
+          </article>
+          <article class="card">
+            <h3>Preliminary Estimation &amp; Validation Roadmap</h3>
+            <p>
+              Stage&nbsp;A–C methodology: (A) Requirements &amp; architecture, (B) Dynamics, mode transition &amp; DRT demand modeling, (C) Literature-grounded corridor KPI estimation (time, energy, CO<sub>2</sub>) and TRL roadmap.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Safety, Fail-Safe Handoff &amp; V2I Ethics</h3>
+            <p>
+              Addresses mechanical fail-safe fallback to wheels if levitation capture fails, V2I spoofing/cybersecurity resilience, and passenger accessibility at automated smart stops [4].
+            </p>
+          </article>
+        </div>
       </div>
     </section>
 
     <section id="references" class="section">
       <div class="container">
-        <h2>5. Key References</h2>
+        <h2>5. Key Literature Foundations</h2>
         <ol class="ref-list">
-          <li>[Key SotA reference 1]</li>
-          <li>[Key SotA reference 2]</li>
+          <li>Chen, P., Lu, Y., Wan, Y., &amp; Zhang, A. (2021). Assessing carbon dioxide emissions of high-speed rail: The case of Beijing–Shanghai corridor. <em>Transportation Research Part D</em>, 97, 102949.</li>
+          <li>Lee, H.-W., Kim, K.-C., &amp; Lee, J. (2006). Review of Maglev train technologies. <em>IEEE Transactions on Magnetics</em>, 42(7), 1917–1925.</li>
+          <li>Feng, J., Hu, Y., Yuan, X., Huang, R., Xiao, L., &amp; Zhang, C. (2024). Autonomous-rail rapid transit tram: System architecture, design and applications. <em>Green Energy and Intelligent Transportation</em>, 3(6), 100161.</li>
+          <li>Fadlelseed, S., et al. (2025). Recent advances in demand responsive transport: Opportunities with autonomous bus service—A system-of-systems overview. <em>IEEE Access</em>, 13, 107800–107831.</li>
         </ol>
       </div>
     </section>
@@ -107,7 +191,7 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>Seminários em Engenharia Mecânica (SEM) &middot; Universidade de Aveiro &middot; 2026/2027</p>
+      <p>MagLink Consortium &middot; Seminários em Engenharia Mecânica (SEM) &middot; Universidade de Aveiro &middot; 2026/2027</p>
     </div>
   </footer>
 </body>
