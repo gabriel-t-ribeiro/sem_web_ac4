@@ -307,11 +307,15 @@ function initHeroField(hero) {
           nx,
           ny,
           phase: Math.random() * Math.PI * 2,
-          speed: 0.4 + Math.random() * 0.65,
-          driftAmp: 3 + Math.random() * 5,
-          baseLen: 2.0 + Math.random() * 1.6,
-          maxBoostLen: 6.0 + Math.random() * 5.5,
-          width: 1.15 + Math.random() * 0.9,
+          phaseY: Math.random() * Math.PI * 2,
+          speedX: 0.48 + Math.random() * 0.62,
+          speedY: 0.42 + Math.random() * 0.58,
+          driftAmpX: 10 + Math.random() * 12,
+          driftAmpY: 8 + Math.random() * 10,
+          baseLen: 2.8 + Math.random() * 2.2,
+          maxBoostLen: 6.5 + Math.random() * 5.5,
+          width: 1.35 + Math.random() * 0.95,
+          baseColor: palette[Math.floor(Math.random() * palette.length)],
           ox: 0,
           oy: 0,
         });
@@ -386,8 +390,8 @@ function initHeroField(hero) {
       // Smoothstep velocity ramp ensures zero jerk when departing from (lastX, lastY)
       const rampT = Math.min(1, dt / 0.85);
       const ramp = rampT * rampT * (3 - 2 * rampT);
-      const rx = Math.min(165, Math.max(60, width * 0.16));
-      const ry = Math.min(100, Math.max(42, height * 0.16));
+      const rx = Math.min(220, Math.max(75, width * 0.22));
+      const ry = Math.min(130, Math.max(52, height * 0.20));
 
       // Lissajous/figure-8 drift: sin(0) === 0 guarantees zero discontinuity from (lastX, lastY)
       const oscX = Math.sin(dt * 0.65) * rx;
@@ -434,8 +438,10 @@ function initHeroField(hero) {
     ctx.lineCap = "round";
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
-      const baseX = p.nx * width + Math.cos(t * p.speed + p.phase) * p.driftAmp;
-      const baseY = p.ny * height + Math.sin(t * p.speed * 0.85 + p.phase) * p.driftAmp;
+      const waveX = Math.cos(t * p.speedX + p.phase) * p.driftAmpX + Math.sin(t * 0.34 + p.ny * 6.2) * 7;
+      const waveY = Math.sin(t * p.speedY + p.phaseY) * p.driftAmpY + Math.cos(t * 0.29 + p.nx * 6.2) * 6;
+      const baseX = p.nx * width + waveX;
+      const baseY = p.ny * height + waveY;
 
       const dx = baseX - pointer.smoothX;
       const dy = baseY - pointer.smoothY;
@@ -456,12 +462,16 @@ function initHeroField(hero) {
       const drawX = baseX + p.ox;
       const drawY = baseY + p.oy;
 
-      // Ambient flow stays faint (~0.08 alpha); mouse proximity reveals crisp directional dashes
-      const alpha = 0.08 + influence * 0.78;
+      // Clear ambient color + gentle twinkle on AFK particles; vivid directional dashes near ring
+      const shimmer = 0.5 + 0.5 * Math.sin(t * p.speedX * 1.3 + p.phase);
+      const alpha = Math.min(0.95, 0.26 + shimmer * 0.14 + influence * 0.68);
       const len = p.baseLen + influence * p.maxBoostLen;
       const half = len * 0.5;
+      const driftVx = -Math.sin(t * p.speedX + p.phase) * p.speedX * p.driftAmpX;
+      const driftVy = Math.cos(t * p.speedY + p.phaseY) * p.speedY * p.driftAmpY;
+      const driftAngle = Math.atan2(driftVy, driftVx);
       const flowAngle = angle + 0.32 * Math.sin(angle * 2 + t * 0.6);
-      const drawAngle = influence > 0.04 ? flowAngle : p.phase * 0.15;
+      const drawAngle = influence > 0.12 ? flowAngle : driftAngle;
 
       const cos = Math.cos(drawAngle);
       const sin = Math.sin(drawAngle);
@@ -469,8 +479,8 @@ function initHeroField(hero) {
       ctx.beginPath();
       ctx.moveTo(drawX - cos * half, drawY - sin * half);
       ctx.lineTo(drawX + cos * half, drawY + sin * half);
-      ctx.lineWidth = p.width + influence * 1.1;
-      ctx.strokeStyle = influence > 0.18 ? pickColor(angle) : "#94a3b8";
+      ctx.lineWidth = p.width + influence * 1.15;
+      ctx.strokeStyle = influence > 0.18 ? pickColor(angle) : p.baseColor;
       ctx.globalAlpha = alpha;
       ctx.stroke();
     }
