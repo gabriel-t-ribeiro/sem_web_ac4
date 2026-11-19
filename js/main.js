@@ -271,7 +271,7 @@ function initHeroField(hero) {
   if (!ctx) return;
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const palette = ["#38bdf8", "#7dd3fc", "#93c5fd", "#a5b4fc", "#f8fafc", "#fbbf24"];
+  const palette = ["#22d3ee", "#3b82f6", "#a855f7", "#fb7185", "#fbbf24", "#34d399", "#f472b6", "#38bdf8"];
 
   let width = 0;
   let height = 0;
@@ -354,13 +354,9 @@ function initHeroField(hero) {
   }
 
   function pickColor(angle) {
-    // Smooth directional spectrum around cursor: cyan/blue dominant, warm amber on front arc
+    // Full vibrant directional spectrum around the active ring
     const norm = ((angle + Math.PI) / (Math.PI * 2)) % 1;
-    if (norm > 0.84 || norm < 0.08) return palette[5];
-    if (norm < 0.35) return palette[0];
-    if (norm < 0.58) return palette[1];
-    if (norm < 0.74) return palette[2];
-    return palette[3];
+    return palette[Math.floor(norm * palette.length) % palette.length];
   }
 
   function renderFrame(timeMs) {
@@ -462,9 +458,9 @@ function initHeroField(hero) {
       const drawX = baseX + p.ox;
       const drawY = baseY + p.oy;
 
-      // Keep AFK capsules miniature yet clearly visible (~0.50-0.66), surging to ~0.98 along the ring
+      // Rich vibrant AFK capsules (~0.58-0.74), surging to full brightness along the active ring
       const shimmer = 0.5 + 0.5 * Math.sin(t * p.speedX * 1.3 + p.phase);
-      const alpha = Math.min(0.98, 0.50 + shimmer * 0.16 + influence * 0.44);
+      const alpha = Math.min(1.0, 0.58 + shimmer * 0.16 + influence * 0.38);
       const len = p.baseLen + influence * p.maxBoostLen;
       const half = len * 0.5;
       const driftVx = -Math.sin(t * p.speedX + p.phase) * p.speedX * p.driftAmpX;
