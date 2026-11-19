@@ -85,10 +85,127 @@
           <img class="hero-kicker-logo" src="assets/logo_smart_mobility.png" alt="">
           <span>MagLink &middot; Scientific &amp; Engineering R&amp;D Proposal</span>
         </p>
-        <h2>1. Societal Challenge &amp; System Boundary</h2>
+        <h2>1. Societal Challenge &amp; 20-Year Transit Opportunity</h2>
         <p class="lead">
-          Regional public transit struggles between two costly extremes: dedicated steel rail carries high civil construction emissions, while buses and streetcars remain slow and bound to fixed stops. Structured as a scientific R&amp;D investigation (TRL&nbsp;2 to TRL&nbsp;4) rather than a startup venture, MagLink evaluates the mechanical, control, and lifecycle feasibility of bridging those two regimes.
+          Regional bus corridors face a structural cost trap: driver labor exceeds 40% of operating expenditure [20], forcing low off-peak frequencies, slow stop-and-go urban speeds (~13&nbsp;km/h [3]), and forced transfers (rejected by 94.1% of our n&nbsp;=&nbsp;51 exploratory survey). Over a 20-year R&amp;D horizon, pairing mature autonomous V2I skip-stop feeders [3, 21, 22] with a highway Maglev trunk cuts OPEX per vehicle-hour, multiplies bus frequency at fixed public subsidy, and beats private-car door-to-door time without building urban steel rail [1, 17].
         </p>
+
+        <div class="corridor-explorer" id="corridor-explorer">
+          <div class="explorer-head">
+            <div>
+              <p class="eyebrow explorer-eyebrow">Interactive 20-Year Corridor Estimator &middot; 70&nbsp;km Trunk + 6&nbsp;km Urban Feeder</p>
+              <h3>Explore OPEX, Bus Frequency &amp; Door-to-Door Gains</h3>
+            </div>
+            <div class="explorer-presets" role="group" aria-label="Scenario horizon presets">
+              <button type="button" class="btn btn-primary explorer-preset is-active" data-preset="future20">20-Year Mature R&amp;D Target</button>
+              <button type="button" class="btn btn-secondary explorer-preset" data-preset="today">Today&rsquo;s Pilot Baseline</button>
+            </div>
+          </div>
+
+          <div class="explorer-controls">
+            <div class="slider-field">
+              <div class="slider-label-row">
+                <label for="slider-supervision">Remote Supervision Ratio (1:N)</label>
+                <output id="out-supervision" for="slider-supervision">1:10</output>
+              </div>
+              <input type="range" id="slider-supervision" min="2" max="20" step="1" value="10" aria-valuetext="1 operator per 10 vehicles">
+              <p class="slider-hint">Driver share &gt;40% [20] replaced by 1:N fleet oversight.</p>
+            </div>
+            <div class="slider-field">
+              <div class="slider-label-row">
+                <label for="slider-skip">V2I Empty-Stop Skip Rate</label>
+                <output id="out-skip" for="slider-skip">35%</output>
+              </div>
+              <input type="range" id="slider-skip" min="0" max="50" step="5" value="35" aria-valuetext="35 percent empty stops skipped">
+              <p class="slider-hint">Reservation skip-stop &amp; dwell control [21, 22].</p>
+            </div>
+            <div class="slider-field">
+              <div class="slider-label-row">
+                <label for="slider-speed">Maglev Highway Trunk Speed</label>
+                <output id="out-speed" for="slider-speed">220 km/h</output>
+              </div>
+              <input type="range" id="slider-speed" min="140" max="280" step="10" value="220" aria-valuetext="220 kilometers per hour">
+              <p class="slider-hint">Curve-constrained motorway glide vs. 85&nbsp;km/h bus.</p>
+            </div>
+          </div>
+
+          <div class="explorer-kpis" aria-live="polite">
+            <div class="kpi-tile">
+              <span class="kpi-label">MagLink OPEX / veh-h</span>
+              <strong id="kpi-opex">68.6%</strong>
+              <span class="kpi-sub">vs. 100% conventional bus</span>
+            </div>
+            <div class="kpi-tile">
+              <span class="kpi-label">Fleet @ Fixed Budget</span>
+              <strong id="kpi-fleet">1.46&times;</strong>
+              <span class="kpi-sub">more buses working</span>
+            </div>
+            <div class="kpi-tile">
+              <span class="kpi-label">Service Headway</span>
+              <strong id="kpi-headway">9.9 min</strong>
+              <span class="kpi-sub" id="kpi-freq">6.06 buses/h (vs. 2.0/h)</span>
+            </div>
+            <div class="kpi-tile kpi-tile--accent">
+              <span class="kpi-label">Door-to-Door Trip</span>
+              <strong id="kpi-d2d">43.4 min</strong>
+              <span class="kpi-sub">vs. 111.4&nbsp;min conventional</span>
+            </div>
+          </div>
+
+          <div class="explorer-bars" aria-label="Interactive door-to-door trip comparison. Hover, focus, or click any bar for breakdown.">
+            <div class="bar-row">
+              <button type="button" class="bar-trigger" data-scenario="conv" interestfor="tip-conv" popovertarget="tip-conv" popovertargetaction="show">
+                <span class="bar-name">Conventional Express Bus <span class="bar-info-badge" aria-hidden="true">i</span></span>
+                <span class="bar-track"><span class="bar-fill bar-fill--muted" id="fill-conv" style="width: 93%;"></span></span>
+                <span class="bar-val" id="val-conv">111.4 min &middot; 30.0 min hw</span>
+              </button>
+              <div id="tip-conv" popover="hint" class="explorer-popover">
+                <strong>Conventional Express Bus (Baseline)</strong>
+                <p id="tip-conv-body">Wait 15.0 min + Urban 27.7 min + Dwell 9.3 min + Trunk 49.4 min + Transfer 10.0 min = <strong>111.4 min</strong>. OPEX: 100% (1.0&times; fleet, 2.0 buses/h).</p>
+              </div>
+            </div>
+
+            <div class="bar-row">
+              <button type="button" class="bar-trigger" data-scenario="pilot" interestfor="tip-pilot" popovertarget="tip-pilot" popovertargetaction="show">
+                <span class="bar-name">Today&rsquo;s Pilot AV Feeder <span class="bar-info-badge" aria-hidden="true">i</span></span>
+                <span class="bar-track"><span class="bar-fill bar-fill--amber" id="fill-pilot" style="width: 93%;"></span></span>
+                <span class="bar-val" id="val-pilot">111.1 min &middot; 27.6 min hw</span>
+              </button>
+              <div id="tip-pilot" popover="hint" class="explorer-popover">
+                <strong>Today&rsquo;s Pilot AV Feeder (12&nbsp;km/h, 1:2)</strong>
+                <p id="tip-pilot-body">Low trial speed (12&nbsp;km/h) cancels OPEX gains: Wait 13.8 min + Urban 30.0 min + Dwell 7.9 min + Trunk 49.4 min + Transfer 10.0 min = <strong>111.1 min</strong>.</p>
+              </div>
+            </div>
+
+            <div class="bar-row">
+              <button type="button" class="bar-trigger" data-scenario="v2i" interestfor="tip-v2i" popovertarget="tip-v2i" popovertargetaction="show">
+                <span class="bar-name">20-Yr Automated V2I Bus <span class="bar-info-badge" aria-hidden="true">i</span></span>
+                <span class="bar-track"><span class="bar-fill bar-fill--teal" id="fill-v2i" style="width: 60%;"></span></span>
+                <span class="bar-val" id="val-v2i">71.4 min &middot; 15.5 min hw</span>
+              </button>
+              <div id="tip-v2i" popover="hint" class="explorer-popover">
+                <strong>20-Yr Automated V2I Bus (27&nbsp;km/h, no Maglev)</strong>
+                <p id="tip-v2i-body">Mature feeder + skip-stop cuts wait &amp; urban leg: Wait 7.8 min + Urban 13.3 min + Dwell 6.1 min + Trunk 44.2 min = <strong>71.4 min</strong>.</p>
+              </div>
+            </div>
+
+            <div class="bar-row">
+              <button type="button" class="bar-trigger bar-trigger--maglink" data-scenario="maglink" interestfor="tip-maglink" popovertarget="tip-maglink" popovertargetaction="show">
+                <span class="bar-name">20-Yr MagLink Bimodal <span class="bar-info-badge" aria-hidden="true">i</span></span>
+                <span class="bar-track"><span class="bar-fill bar-fill--blue" id="fill-maglink" style="width: 36%;"></span></span>
+                <span class="bar-val" id="val-maglink">43.4 min &middot; 9.9 min hw</span>
+              </button>
+              <div id="tip-maglink" popover="hint" class="explorer-popover">
+                <strong>20-Yr MagLink Bimodal (V2I Feeder + Maglev Trunk)</strong>
+                <p id="tip-maglink-body">Wait 5.0 min + Urban 13.3 min + Dwell 6.1 min + Maglev Trunk 19.1 min + 0 min transfer = <strong>43.4 min</strong> (beats private car).</p>
+              </div>
+            </div>
+          </div>
+
+          <p class="explorer-footnote">
+            Hover, focus, or tap any bar for the component breakdown. Parametric model grounded in [3, 17, 20&ndash;22] via <code>scripts/corridor_estimator.py</code>.
+          </p>
+        </div>
 
         <h3 class="subhead">Guiding Societal Questions</h3>
         <div class="card-grid">
@@ -244,7 +361,31 @@
         </p>
 
         <div class="callout-subtle">
-          <strong>Science-to-Technology Advance:</strong> Literature treats Electromagnetic/Electrodynamic Suspension (EMS/EDS) and Maglev deployment hurdles [2, 12, 13, 16–19], virtual-track trams [3], autonomous transit buses [4, 8–11], and road-preview active suspension [5–7] in separate silos. MagLink links these domains via the physical bimodal handoff rig and corridor-level LCA simulation.
+          <strong>Science-to-Technology Advance:</strong> Literature treats Electromagnetic/Electrodynamic Suspension (EMS/EDS) and Maglev deployment hurdles [2, 12, 13, 16–19], virtual-track trams [3], autonomous transit buses [4, 8–11, 20–22], and road-preview active suspension [5–7] in separate silos. MagLink links these domains via the physical bimodal handoff rig and corridor-level LCA simulation.
+        </div>
+
+        <h3 class="subhead">3.3 Measurable R&amp;D Objectives</h3>
+        <div class="card-grid">
+          <article class="card">
+            <span class="badge">O1 · OPEX &amp; Fleet</span>
+            <h3>&ge;30% Unit OPEX Cut</h3>
+            <p class="muted">Reduce operating cost per vehicle-hour via 1:10 remote oversight [20] to unlock ~1.46&times; active fleet capacity at fixed public budget.</p>
+          </article>
+          <article class="card">
+            <span class="badge">O2 · Service Frequency</span>
+            <h3>3&times; Corridor Frequency</h3>
+            <p class="muted">Combine fleet scaling with V2I skip-stop dwell cuts [21, 22] and 220&nbsp;km/h Maglev cruise to shrink 30&nbsp;min headways to ~9.9&nbsp;min.</p>
+          </article>
+          <article class="card">
+            <span class="badge">O3 · Bimodal Handoff</span>
+            <h3>TRL 4 Sub-Scale Rig</h3>
+            <p class="muted">Demonstrate repeatable road-to-guideway latching with WP3 predictive airgap capture [5–7] and passive mechanical wheel fallback.</p>
+          </article>
+          <article class="card">
+            <span class="badge">O4 · Corridor LCA</span>
+            <h3>Net Carbon Payback</h3>
+            <p class="muted">Benchmark guideway retrofit CapEx [17] and embodied CO<sub>2</sub> [1] against car modal shift across regional Portuguese demand bands.</p>
+          </article>
         </div>
 
         <div class="table-wrap">
@@ -450,17 +591,17 @@
           <canvas class="hero-canvas" aria-hidden="true"></canvas>
           <div class="cta-stage-inner">
             <p class="eyebrow">5. Literature &amp; Technical Evidence</p>
-            <h2>Built on 19 Peer-Reviewed Studies.</h2>
+            <h2>Built on 22 Peer-Reviewed Studies.</h2>
             <p class="lead">
-              Explore the complete literature analysis matrix, Maglev deployment and switching reality checks, autonomous transit AI safety boundaries, and predictive active suspension controls underpinning our 24-month R&amp;D plan.
+              Explore the complete literature analysis matrix, Maglev deployment and switching reality checks, automated bus OPEX &amp; V2I skip-stop studies, autonomous transit AI safety boundaries, and predictive active suspension controls underpinning our 24-month R&amp;D plan.
             </p>
             <div class="cta-pills" aria-label="Evidence summary">
-              <div class="cta-pill"><strong>19 Studies</strong><span>2006&ndash;2026 Peer-Reviewed</span></div>
+              <div class="cta-pill"><strong>22 Studies</strong><span>2006&ndash;2026 Peer-Reviewed</span></div>
               <div class="cta-pill"><strong>6 Domains</strong><span>EMS/EDS, MPC, V2I &amp; LCA</span></div>
               <div class="cta-pill"><strong>TRL 2 &rarr; 4</strong><span>24-Month Rig Validation</span></div>
             </div>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="state-of-the-art.html#references">View All 19 References &rarr;</a>
+              <a class="btn btn-primary" href="state-of-the-art.html#references">View All 22 References &rarr;</a>
               <a class="btn btn-secondary" href="state-of-the-art.html#literature-matrix">Paper Analysis Matrix</a>
             </div>
           </div>
@@ -484,7 +625,7 @@
             <li><a href="state-of-the-art.html">State of the Art</a></li>
             <li><a href="state-of-the-art.html#literature-matrix">Literature Matrix</a></li>
             <li><a href="state-of-the-art.html#tech-comparison">Technology Comparison</a></li>
-            <li><a href="state-of-the-art.html#references">19 Cited References</a></li>
+            <li><a href="state-of-the-art.html#references">22 Cited References</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -515,7 +656,7 @@
           <span class="footer-author-name"><a href="https://github.com/gabriel-t-ribeiro" target="_blank" rel="noopener noreferrer">Gabriel Ribeiro</a></span>
         </div>
         <div class="footer-meta">
-          MagLink R&amp;D Consortium &middot; <a href="state-of-the-art.html#references">19 Verified References</a> &middot; Last updated: Nov&nbsp;2026
+          MagLink R&amp;D Consortium &middot; <a href="state-of-the-art.html#references">22 Verified References</a> &middot; Last updated: Nov&nbsp;2026
         </div>
       </div>
 

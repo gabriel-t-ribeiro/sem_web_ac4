@@ -540,3 +540,202 @@ function initHeroField(hero) {
   resize();
   startLoop();
 }
+
+/* Interactive 20-Year Corridor & OPEX Explorer */
+function initCorridorExplorer() {
+  const root = document.getElementById("corridor-explorer");
+  if (!root) return;
+
+  const sSup = document.getElementById("slider-supervision");
+  const sSkip = document.getElementById("slider-skip");
+  const sSpeed = document.getElementById("slider-speed");
+  const outSup = document.getElementById("out-supervision");
+  const outSkip = document.getElementById("out-skip");
+  const outSpeed = document.getElementById("out-speed");
+  const presets = root.querySelectorAll(".explorer-preset");
+
+  const CFG = {
+    urbanKm: 6.0,
+    trunkKm: 70.0,
+    stops: 14,
+    stopLossS: 40.0,
+    layoverMin: 12.0,
+    baseHeadway: 30.0,
+    driverShare: 0.45,
+    remoteWageMult: 1.25,
+    overhead: 0.08,
+  };
+
+  function calcScenario(urbanKmh, trunkKmh, skipFrac, supN, transferMin, isConv = false) {
+    const opexRatio = isConv
+      ? 1.0
+      : (1.0 - CFG.driverShare) + (CFG.driverShare * CFG.remoteWageMult) / Math.max(1, supN) + CFG.overhead;
+
+    const urbanMin = (CFG.urbanKm / urbanKmh) * 60.0;
+    const trunkMin = (CFG.trunkKm / trunkKmh) * 60.0;
+    const dwellMin = ((1.0 - skipFrac) * CFG.stops * CFG.stopLossS) / 60.0;
+    const inVeh = urbanMin + trunkMin + dwellMin;
+    const cycleMin = 2.0 * inVeh + CFG.layoverMin;
+
+    const convCycle =
+      2.0 * ((CFG.urbanKm / 13.0) * 60.0 + (CFG.trunkKm / 85.0) * 60.0 + (CFG.stops * CFG.stopLossS) / 60.0) +
+      CFG.layoverMin;
+    const fleetMult = 1.0 / opexRatio;
+    const headwayMin = CFG.baseHeadway * (cycleMin / convCycle) * opexRatio;
+    const freqPerH = 60.0 / headwayMin;
+    const waitMin = 0.5 * headwayMin;
+    const d2d = waitMin + inVeh + transferMin;
+
+    return { opexRatio, fleetMult, headwayMin, freqPerH, waitMin, urbanMin, trunkMin, dwellMin, transferMin, d2d };
+  }
+
+  function syncSliderVars(slider) {
+    slider.style.setProperty("--attr-min", slider.min || 0);
+    slider.style.setProperty("--attr-max", slider.max || 100);
+    slider.style.setProperty("--control-value", slider.value);
+  }
+
+  function update() {
+    const supN = Number(sSup.value);
+    const skipPct = Number(sSkip.value);
+    const trunkSpeed = Number(sSpeed.value);
+
+    syncSliderVars(sSup);
+    syncSliderVars(sSkip);
+    syncSliderVars(sSpeed);
+
+    outSup.textContent = `1:${supN}`;
+    sSup.setAttribute("aria-valuetext", `1 operator per ${supN} vehicles`);
+    outSkip.textContent = `${skipPct}%`;
+    sSkip.setAttribute("aria-valuetext", `${skipPct} percent empty stops skipped`);
+    outSpeed.textContent = `${trunkSpeed} km/h`;
+    sSpeed.setAttribute("aria-valuetext", `${trunkSpeed} kilometers per hour`);
+
+    const conv = calcScenario(13.0, 85.0, 0.0, 1, 10.0, true);
+    const pilot = calcScenario(12.0, 85.0, 0.15, 2, 10.0, false);
+    const v2i = calcScenario(27.0, 95.0, skipPct / 100.0, supN, 0.0, false);
+    const maglink = calcScenario(27.0, trunkSpeed, skipPct / 100.0, supN, 0.0, false);
+
+    document.getElementById("kpi-opex").textContent = `${(maglink.opexRatio * 100).toFixed(1)}%`;
+    document.getElementById("kpi-fleet").textContent = `${maglink.fleetMult.toFixed(2)}\u00d7`;
+    document.getElementById("kpi-headway").textContent = `${maglink.headwayMin.toFixed(1)} min`;
+    document.getElementById("kpi-freq").textContent = `${maglink.freqPerH.toFixed(2)} buses/h (vs. 2.0/h)`;
+    document.getElementById("kpi-d2d").textContent = `${maglink.d2d.toFixed(1)} min`;
+
+    const maxD2D = Math.max(conv.d2d, pilot.d2d, 120);
+    const rows = [
+      ["conv", conv, "OPEX: 100% (1.0\u00d7 fleet, 2.0 buses/h)"],
+      ["pilot", pilot, `OPEX: ${(pilot.opexRatio * 100).toFixed(1)}% (${pilot.fleetMult.toFixed(2)}\u00d7 fleet, 12 km/h trial)`],
+      ["v2i", v2i, `OPEX: ${(v2i.opexRatio * 100).toFixed(1)}% (${v2i.fleetMult.toFixed(2)}\u00d7 fleet, ${v2i.freqPerH.toFixed(2)} buses/h)`],
+      ["maglink", maglink, `OPEX: ${(maglink.opexRatio * 100).toFixed(1)}% (${maglink.fleetMult.toFixed(2)}\u00d7 fleet, ${maglink.freqPerH.toFixed(2)} buses/h)`],
+    ];
+
+    rows.forEach(([key, data, note]) => {
+      const fill = document.getElementById(`fill-${key}`);
+      const val = document.getElementById(`val-${key}`);
+      const tip = document.getElementById(`tip-${key}-body`);
+      if (fill) fill.style.width = `${Math.min(100, (data.d2d / maxD2D) * 100).toFixed(1)}%`;
+      if (val) val.textContent = `${data.d2d.toFixed(1)} min \u00b7 ${data.headwayMin.toFixed(1)} min hw`;
+      if (tip) {
+        tip.innerHTML = `Wait ${data.waitMin.toFixed(1)}m + Urban ${data.urbanMin.toFixed(1)}m + Dwell ${data.dwellMin.toFixed(1)}m + Trunk ${data.trunkMin.toFixed(1)}m + Transfer ${data.transferMin.toFixed(1)}m = <strong>${data.d2d.toFixed(1)} min</strong>. ${note}.`;
+      }
+    });
+  }
+
+  [sSup, sSkip, sSpeed].forEach((el) => el.addEventListener("input", () => {
+    presets.forEach((b) => b.classList.remove("is-active"));
+    update();
+  }));
+
+  presets.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      presets.forEach((b) => {
+        b.classList.remove("is-active", "btn-primary");
+        b.classList.add("btn-secondary");
+      });
+      btn.classList.add("is-active", "btn-primary");
+      btn.classList.remove("btn-secondary");
+      if (btn.dataset.preset === "today") {
+        sSup.value = "2";
+        sSkip.value = "15";
+        sSpeed.value = "140";
+      } else {
+        sSup.value = "10";
+        sSkip.value = "35";
+        sSpeed.value = "220";
+      }
+      update();
+    });
+  });
+
+  // Progressive enhancement for popover="hint" & interestfor triggers
+  const probe = document.createElement("div");
+  probe.popover = "hint";
+  if (probe.popover !== "hint") {
+    document.addEventListener(
+      "beforetoggle",
+      (event) => {
+        const t = event.target;
+        if (t?.getAttribute?.("popover") === "hint" && event.newState === "open") {
+          t.popover = "auto";
+        }
+      },
+      true
+    );
+  }
+
+  const triggers = root.querySelectorAll("[interestfor]");
+  const ownedTriggers = new Map();
+  triggers.forEach((trigger) => {
+    const id = trigger.getAttribute("interestfor");
+    const tip = id ? document.getElementById(id) : null;
+    if (!tip) return;
+    tip.setAttribute("role", "tooltip");
+    if (!trigger.hasAttribute("aria-expanded")) {
+      trigger.setAttribute("aria-expanded", "false");
+      ownedTriggers.set(trigger, id);
+    }
+
+    if (!("interestForElement" in HTMLButtonElement.prototype)) {
+      let hideTimer;
+      const showTip = () => {
+        clearTimeout(hideTimer);
+        if (typeof tip.showPopover === "function" && !tip.matches(":popover-open")) {
+          try { tip.showPopover(); } catch {}
+        }
+      };
+      const scheduleHide = () => {
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(() => {
+          if (typeof tip.hidePopover === "function" && tip.matches(":popover-open")) {
+            try { tip.hidePopover(); } catch {}
+          }
+        }, 120);
+      };
+      trigger.addEventListener("pointerenter", showTip);
+      trigger.addEventListener("focus", showTip);
+      trigger.addEventListener("pointerleave", scheduleHide);
+      trigger.addEventListener("blur", scheduleHide);
+      tip.addEventListener("pointerenter", () => clearTimeout(hideTimer));
+      tip.addEventListener("pointerleave", scheduleHide);
+    }
+  });
+
+  document.addEventListener(
+    "toggle",
+    (event) => {
+      const target = event.target;
+      if (!target?.id) return;
+      ownedTriggers.forEach((tipId, trigger) => {
+        if (tipId === target.id) {
+          trigger.setAttribute("aria-expanded", event.newState === "open" ? "true" : "false");
+        }
+      });
+    },
+    true
+  );
+
+  update();
+}
+
+initCorridorExplorer();
