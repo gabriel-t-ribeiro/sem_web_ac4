@@ -735,6 +735,124 @@ tr:last-child td {
   background: var(--accent-soft);
 }
 
+.table-wrap--responsive {
+  overflow: auto;
+  max-inline-size: 100%;
+  max-block-size: min(560px, 80dvh);
+  container-type: inline-size;
+}
+
+.table-wrap--responsive table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table-wrap--responsive caption {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--muted);
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--border);
+}
+
+.table-wrap--responsive thead {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 2;
+}
+
+.table-wrap--responsive tbody th {
+  position: sticky;
+  inset-inline-start: 0;
+  z-index: 1;
+  background: var(--surface);
+  font-weight: 700;
+}
+
+.table-pending {
+  color: var(--muted);
+  font-style: italic;
+}
+
+@container (width < 640px) {
+  .table-wrap--responsive {
+    max-block-size: none;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .table-wrap--responsive table,
+  .table-wrap--responsive caption,
+  .table-wrap--responsive thead,
+  .table-wrap--responsive tbody,
+  .table-wrap--responsive tr,
+  .table-wrap--responsive th,
+  .table-wrap--responsive td {
+    display: block;
+    width: 100%;
+  }
+
+  .table-wrap--responsive caption {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-block-end: 0.75rem;
+  }
+
+  .table-wrap--responsive thead {
+    display: none;
+  }
+
+  .table-wrap--responsive tr {
+    margin-block-end: 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+
+  .table-wrap--responsive tbody th {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 2;
+    background: var(--bg-soft);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .table-wrap--responsive td {
+    padding: 0.65rem 1rem;
+  }
+
+  .table-wrap--responsive td::before {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-block-end: 0.2rem;
+  }
+
+  .table-wrap--responsive td:nth-child(2)::before {
+    content: var(--col-2, "Column 2");
+  }
+
+  .table-wrap--responsive td:nth-child(3)::before {
+    content: var(--col-3, "Column 3");
+  }
+
+  .table-wrap--responsive td:nth-child(4)::before {
+    content: var(--col-4, "Column 4");
+  }
+
+  .table-wrap--responsive td:nth-child(5)::before {
+    content: var(--col-5, "Column 5");
+  }
+}
+
 .ref-list {
   padding-left: 1.3rem;
   color: var(--muted);
