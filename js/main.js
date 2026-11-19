@@ -271,7 +271,7 @@ function initHeroField(hero) {
   if (!ctx) return;
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const palette = ["#38bdf8", "#60a5fa", "#818cf8", "#f8fafc", "#38bdf8", "#f59e0b"];
+  const palette = ["#38bdf8", "#7dd3fc", "#93c5fd", "#a5b4fc", "#f8fafc", "#fbbf24"];
 
   let width = 0;
   let height = 0;
@@ -312,9 +312,9 @@ function initHeroField(hero) {
           speedY: 0.42 + Math.random() * 0.58,
           driftAmpX: 10 + Math.random() * 12,
           driftAmpY: 8 + Math.random() * 10,
-          baseLen: 2.8 + Math.random() * 2.2,
-          maxBoostLen: 6.5 + Math.random() * 5.5,
-          width: 1.35 + Math.random() * 0.95,
+          baseLen: 4.0 + Math.random() * 2.6,
+          maxBoostLen: 6.5 + Math.random() * 5.0,
+          width: 1.55 + Math.random() * 0.9,
           baseColor: palette[Math.floor(Math.random() * palette.length)],
           ox: 0,
           oy: 0,
@@ -432,8 +432,8 @@ function initHeroField(hero) {
       ctx.fillRect(0, 0, width, height);
     }
 
-    const ringRadius = Math.max(125, Math.min(205, Math.min(width, height) * 0.26));
-    const bandSigma = 74;
+    const ringRadius = Math.max(130, Math.min(215, Math.min(width, height) * 0.27));
+    const bandSigma = 86;
 
     ctx.lineCap = "round";
     for (let i = 0; i < particles.length; i++) {
@@ -462,9 +462,9 @@ function initHeroField(hero) {
       const drawX = baseX + p.ox;
       const drawY = baseY + p.oy;
 
-      // Clear ambient color + gentle twinkle on AFK particles; vivid directional dashes near ring
+      // Keep AFK capsules miniature yet clearly visible (~0.50-0.66), surging to ~0.98 along the ring
       const shimmer = 0.5 + 0.5 * Math.sin(t * p.speedX * 1.3 + p.phase);
-      const alpha = Math.min(0.95, 0.26 + shimmer * 0.14 + influence * 0.68);
+      const alpha = Math.min(0.98, 0.50 + shimmer * 0.16 + influence * 0.44);
       const len = p.baseLen + influence * p.maxBoostLen;
       const half = len * 0.5;
       const driftVx = -Math.sin(t * p.speedX + p.phase) * p.speedX * p.driftAmpX;
