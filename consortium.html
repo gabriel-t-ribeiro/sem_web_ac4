@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Consortium, Roles &amp; Resource Plan | MagLink</title>
-  <meta name="description" content="Consortium proponent characterization (§1.9), work package resource allocation (§5.1), and consortium complementarity (§5.2) for the MagLink R&amp;D proposal.">
+  <title>Consortium, Group Contributions &amp; Resource Plan | MagLink</title>
+  <meta name="description" content="Group-by-group proponent contributions (§1.9), work package resource allocation (§5.1), and consortium complementarity (§5.2) for the MagLink R&amp;D proposal.">
   <link rel="icon" type="image/png" href="assets/logo_smart_mobility.png">
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/main.js" defer></script>
@@ -48,126 +48,99 @@
       <canvas class="hero-canvas" aria-hidden="true"></canvas>
       <div class="container hero-stage">
         <p class="eyebrow">MagLink &middot; SEM 2026/2027 Consortium Plan</p>
-        <h1>Consortium Structure, Member Roles &amp; Resource Plan</h1>
+        <h1>Consortium Structure, Group Contributions &amp; Resource Plan</h1>
         <p class="lead">
-          Detailed proponent characterization (§1.9), Work Package effort allocation (§5.1), and technical complementarity (§5.2) across MagLink Core Team (Grupo 2) and Suspensão Ativa Preditiva at DEM, Universidade de Aveiro.
+          Group-specific technical contributions (§1.9), cross-group interface alignment, Work Package effort allocation (§5.1), and consortium complementarity (§5.2) across MagLink Core Team (Grupo 2) and Suspensão Ativa Preditiva at DEM, Universidade de Aveiro.
         </p>
       </div>
     </section>
 
     <section id="roles" class="section">
       <div class="container">
-        <h2>1. Proponent Characterization &amp; Individual Roles (§1.9)</h2>
+        <h2>1. Group-Specific Contributions &amp; Reciprocal Alignment (§1.9)</h2>
         <p class="lead">
-          Two Mechanical Engineering groups at Universidade de Aveiro split system-level bimodal architecture and predictive active suspension controls across the 24-month R&amp;D plan.
+          Each participating SEM group owns a distinct engineering layer of the MagLink proposal, matched directly to its published research scope so that deliverables align across both groups&rsquo; work plans.
         </p>
 
-        <div tabindex="0" role="region" aria-labelledby="grupo2-table-caption" class="table-wrap table-wrap--responsive">
-          <table style="--col-2: 'Affiliation'; --col-3: 'Core Competencies'; --col-4: 'Assigned WPs &amp; Project Role';">
-            <caption id="grupo2-table-caption">Table 1A — MagLink Core Team · Grupo 2 (DEM, Universidade de Aveiro)</caption>
+        <div tabindex="0" role="region" aria-labelledby="grupo-table-caption" class="table-wrap table-wrap--responsive">
+          <table style="--col-2: 'Members &amp; Scope'; --col-3: 'Specific Contribution to MagLink'; --col-4: 'Inputs Required from Partner';">
+            <caption id="grupo-table-caption">Table 1A — Participating SEM Groups &amp; Specific Project Contributions (DEM, Univ. of Aveiro)</caption>
             <thead>
               <tr>
-                <th>Member</th>
-                <th>Affiliation</th>
-                <th>Core Competencies</th>
-                <th>Assigned WPs &amp; Project Role</th>
+                <th>Group</th>
+                <th>Members &amp; Scope</th>
+                <th>Specific Contribution to MagLink</th>
+                <th>Inputs Required from Partner</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th>Gabriel Ribeiro</th>
-                <td>DEM &middot; Univ. of Aveiro</td>
-                <td>Systems integration, technical documentation, web &amp; repository engineering</td>
-                <td><strong>WP1, WP2, WP4, WP5</strong> &middot; Main Author, Ac4 Web Portal &amp; Repository Maintainer</td>
+                <th>MagLink Core Team<br><span class="muted">Grupo 2 (Lead Proponent)</span></th>
+                <td>
+                  <strong>Members:</strong> Matilde Romano, Eduardo Duarte, Guilherme Lopes, Lucas Fonseca, Diogo Pedrosa, Gabriel Ribeiro.<br>
+                  <strong>Scope:</strong> Bimodal road-to-Maglev vehicle architecture, V2I skip-stop modeling &amp; corridor LCA [1–4, 16–22].
+                </td>
+                <td>
+                  Leads <strong>WP1, WP2, WP4</strong> and co-leads <strong>WP5</strong>: defines corridor &amp; mass budgets, designs the wheel-retraction &amp; bogie-latching chassis with passive wheel fallback, models V2I skip-stop frequency/OPEX gains, and runs LCA benchmarks.
+                </td>
+                <td>
+                  Receives preview actuator envelopes, 4-wheel pitch/heave settling profiles, airgap capture tolerances, and actuator power draw estimates from <strong>WP3</strong>.
+                </td>
               </tr>
-              <tr>
-                <th>Matilde Romano</th>
-                <td>DEM &middot; Univ. of Aveiro</td>
-                <td class="table-pending">Pending individual competency confirmation (Issue #6)</td>
-                <td class="table-pending">WP1 / WP2 / WP4 / WP5 &middot; Role pending confirmation (Issue #6)</td>
-              </tr>
-              <tr>
-                <th>Eduardo Duarte</th>
-                <td>DEM &middot; Univ. of Aveiro</td>
-                <td class="table-pending">Pending individual competency confirmation (Issue #6)</td>
-                <td class="table-pending">WP1 / WP2 / WP4 / WP5 &middot; Role pending confirmation (Issue #6)</td>
-              </tr>
-              <tr>
-                <th>Guilherme Lopes</th>
-                <td>DEM &middot; Univ. of Aveiro</td>
-                <td class="table-pending">Pending individual competency confirmation (Issue #6)</td>
-                <td class="table-pending">WP1 / WP2 / WP4 / WP5 &middot; Role pending confirmation (Issue #6)</td>
-              </tr>
-              <tr>
-                <th>Lucas Fonseca</th>
-                <td>DEM &middot; Univ. of Aveiro</td>
-                <td class="table-pending">Pending individual competency confirmation (Issue #6)</td>
-                <td class="table-pending">WP1 / WP2 / WP4 / WP5 &middot; Role pending confirmation (Issue #6)</td>
-              </tr>
-              <tr>
-                <th>Diogo Pedrosa</th>
-                <td>DEM &middot; Univ. of Aveiro</td>
-                <td class="table-pending">Pending individual competency confirmation (Issue #6)</td>
-                <td class="table-pending">WP1 / WP2 / WP4 / WP5 &middot; Role pending confirmation (Issue #6)</td>
+              <tr class="row-highlight">
+                <th>Suspensão Ativa Preditiva<br><span class="muted"><a href="https://sem-susp-ativa-preditiva.htmly.com.br/" target="_blank" rel="noopener noreferrer">Partner Portal &#8599;</a></span></th>
+                <td>
+                  <strong>Members:</strong> André Pinto, David Sousa, Dinis Mano, Filipe Guimarães, João Martins, Rodrigo Osório.<br>
+                  <strong>Scope:</strong> Road-preview active suspension sensing, dynamics &amp; high-frequency MPC [5–7].
+                </td>
+                <td>
+                  Leads <strong>WP3 (M5–M16)</strong> and co-executes <strong>WP5 (M15–M24)</strong>: applies real-time 3D surface topography vision, 4-wheel pre-impact MPC leveling, reverse-roll stability, and kinetic sensor energy harvesting/diagnostics to road ride comfort and Maglev airgap capture during transition.
+                </td>
+                <td>
+                  Receives chassis sprung/unsprung mass distribution, wheel-retraction stroke geometry, guideway entry speed corridor, and test-rig mounting specs from <strong>WP1 &amp; WP2</strong>.
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <div tabindex="0" role="region" aria-labelledby="partner-table-caption" class="table-wrap table-wrap--responsive">
-          <table style="--col-2: 'Affiliation'; --col-3: 'Core Competencies'; --col-4: 'Assigned WPs &amp; Project Role';">
-            <caption id="partner-table-caption">Table 1B — Partner Group · Suspensão Ativa Preditiva (<a href="https://sem-susp-ativa-preditiva.htmly.com.br/" target="_blank" rel="noopener noreferrer">Partner Portal &#8599;</a>)</caption>
+        <div tabindex="0" role="region" aria-labelledby="partner-align-caption" class="table-wrap table-wrap--responsive">
+          <table style="--col-2: 'Partner Capability (Their Site &amp; Poster)'; --col-3: 'How It Contributes to MagLink (WP3 &amp; WP5)';">
+            <caption id="partner-align-caption">Table 1B — Reciprocal Task Mapping: Matching Suspensão Ativa Preditiva&rsquo;s Stated Pillars to MagLink</caption>
             <thead>
               <tr>
-                <th>Member</th>
-                <th>Affiliation</th>
-                <th>Core Competencies</th>
-                <th>Assigned WPs &amp; Project Role</th>
+                <th>Stated Research Pillar</th>
+                <th>Partner Capability (Their Site &amp; Poster)</th>
+                <th>How It Contributes to MagLink (WP3 &amp; WP5)</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th>André Pinto</th>
-                <td>DEM &middot; Univ. of Aveiro</td>
-                <td>Predictive active suspension &amp; control systems [5–7]</td>
-                <td class="table-pending">WP3 Lead Group &amp; WP5 Support &middot; Individual split pending (Issue #6)</td>
+                <th>1. Computer Vision Topography</th>
+                <td>Real-time 3D road topography reconstruction with a millisecond (<em>ms</em>) preview window before wheel impact.</td>
+                <td>Scans both urban street irregularities (feeder comfort) and guideway entry/exit transition ramps ahead of bogie engagement so leveling actuation starts before rail contact.</td>
               </tr>
               <tr>
-                <th>David Sousa</th>
-                <td>DEM &middot; Univ. of Aveiro</td>
-                <td>Predictive active suspension &amp; control systems [5–7]</td>
-                <td class="table-pending">WP3 Lead Group &amp; WP5 Support &middot; Individual split pending (Issue #6)</td>
+                <th>2. Vehicle Dynamics &amp; Reverse Roll</th>
+                <td>Complex 4-wheel suspension kinematics, inter-wheel load transfer, and reverse-roll lateral grip stabilization.</td>
+                <td>Manages dynamic chassis load transfer, heave, and pitch across all four independent wheels while steering into curve-constrained motorway lanes and retracting/deploying wheels.</td>
               </tr>
               <tr>
-                <th>Dinis Mano</th>
-                <td>DEM &middot; Univ. of Aveiro</td>
-                <td>Predictive active suspension &amp; control systems [5–7]</td>
-                <td class="table-pending">WP3 Lead Group &amp; WP5 Support &middot; Individual split pending (Issue #6)</td>
+                <th>3. High-Frequency Predictive Control (MPC)</th>
+                <td>Speed-dependent Model Predictive Control (MPC) computing pre-impact suspension forces [5–7] to resolve the comfort-vs.-stability trade-off.</td>
+                <td>Executes millimeter-scale chassis attitude control during the road-to-Maglev handoff to hold the vehicle within the target magnetic airgap capture band on entry and wheel touchdown.</td>
               </tr>
               <tr>
-                <th>Filipe Guimarães</th>
-                <td>DEM &middot; Univ. of Aveiro</td>
-                <td>Predictive active suspension &amp; control systems [5–7]</td>
-                <td class="table-pending">WP3 Lead Group &amp; WP5 Support &middot; Individual split pending (Issue #6)</td>
-              </tr>
-              <tr>
-                <th>João Martins</th>
-                <td>DEM &middot; Univ. of Aveiro</td>
-                <td>Predictive active suspension &amp; control systems [5–7]</td>
-                <td class="table-pending">WP3 Lead Group &amp; WP5 Support &middot; Individual split pending (Issue #6)</td>
-              </tr>
-              <tr>
-                <th>Rodrigo Osório</th>
-                <td>DEM &middot; Univ. of Aveiro</td>
-                <td>Predictive active suspension &amp; control systems [5–7]</td>
-                <td class="table-pending">WP3 Lead Group &amp; WP5 Support &middot; Individual split pending (Issue #6)</td>
+                <th>4. Energy Harvesting &amp; AI Diagnostics</th>
+                <td>Kinetic vibration energy harvesting to power sensors plus AI diagnostics distinguishing normal road vibration from structural faults.</td>
+                <td>Offsets sensor/actuator power consumption inside WP1/WP4&rsquo;s vehicle energy budget and supplies early fault detection of suspension anomalies before mode transition locks in WP5 safety trials.</td>
               </tr>
             </tbody>
           </table>
         </div>
 
         <div class="callout">
-          <strong>Consortium Transparency Note:</strong> Individual member roles and person-month (PM) weights are intentionally left as pending confirmation (<a href="https://github.com/gabriel-t-ribeiro/sem_web_ac4/issues/6" target="_blank" rel="noopener noreferrer">Issue #6</a>) rather than fabricated prior to final sign-off between both groups.
+          <strong>Consortium Synchronization Note:</strong> Following SEM course guidance, this section locks <strong>each group&rsquo;s specific engineering contribution and reciprocal WP interface</strong> rather than arbitrary individual sub-tasks. Person-month (PM) weights across WP1–WP5 (<a href="https://github.com/gabriel-t-ribeiro/sem_web_ac4/issues/6" target="_blank" rel="noopener noreferrer">Issue #6</a>) and quantitative Caderno de Encargos bounds (<a href="https://github.com/gabriel-t-ribeiro/sem_web_ac4/issues/5" target="_blank" rel="noopener noreferrer">Issue #5</a>) remain marked for joint partner sign-off, and reciprocal MagLink–WP3 alignment is being coordinated with Suspensão Ativa Preditiva so both group pages reflect the exact same interface.
         </div>
       </div>
     </section>
@@ -210,21 +183,21 @@
                 <th>WP3 · Adaptive Suspension &amp; Airgap</th>
                 <td>M5–M16</td>
                 <td>Suspensão Ativa Preditiva</td>
-                <td>Delivers road-preview MPC [5–7] &amp; airgap capture loop to WP2/WP5 integration</td>
+                <td>Delivers road-preview MPC [5–7], reverse-roll dynamics &amp; airgap capture loop to WP2/WP5 integration</td>
                 <td class="table-pending">Pending sign-off (Issue #6)</td>
               </tr>
               <tr>
                 <th>WP4 · V2I Skip-Stop &amp; Corridor LCA</th>
                 <td>M10–M21</td>
                 <td>MagLink Core Team (Grupo 2)</td>
-                <td>Uses WP1–WP3 vehicle mass &amp; power budget to model skip-stop energy &amp; LCA [1, 4]</td>
+                <td>Integrates WP3 actuator net power &amp; mass budget into skip-stop OPEX/LCA simulations [1, 4, 20–22]</td>
                 <td class="table-pending">Pending sign-off (Issue #6)</td>
               </tr>
               <tr>
                 <th>WP5 · Sub-Scale Rig &amp; TRL 4 Validation</th>
                 <td>M15–M24</td>
                 <td>Full Consortium (Joint)</td>
-                <td>Joint benchtop/sub-scale transition rig, fault-injection trials &amp; final report</td>
+                <td>Joint benchtop/sub-scale transition rig, suspension anomaly fault-injection trials &amp; final report</td>
                 <td class="table-pending">Pending sign-off (Issue #6)</td>
               </tr>
             </tbody>
@@ -270,14 +243,14 @@
             <span class="badge">Grupo 2 · System &amp; Transit</span>
             <h3>Bimodal Architecture &amp; LCA</h3>
             <p class="muted">
-              Covers structural wheel-to-Maglev chassis packaging, passive mechanical fallback, V2I skip-stop dispatch, and corridor lifecycle carbon accounting [1–4, 16–19].
+              Covers structural wheel-to-Maglev chassis packaging, passive mechanical fallback, V2I skip-stop dispatch, and corridor lifecycle carbon accounting [1–4, 16–22].
             </p>
           </article>
           <article class="card">
             <span class="badge">Partner · Active Control</span>
             <h3>Predictive Suspension &amp; Airgap</h3>
             <p class="muted">
-              Brings dedicated expertise in 3D road-topography preview, speed-dependent MPC, and independent 4-wheel actuation required to stabilize mode handoff [5–7].
+              Brings dedicated expertise in 3D road-topography preview, reverse-roll dynamics, speed-dependent MPC, and vibration energy harvesting required to stabilize mode handoff [5–7].
             </p>
           </article>
           <article class="card">
@@ -298,7 +271,7 @@
         <div>
           <p class="footer-brand-title">MagLink R&amp;D</p>
           <p class="footer-brand-copy">
-            Consortium structure, member roles, and 24-month resource plan. DEM, Universidade de Aveiro (2026/2027).
+            Consortium structure, group contributions, and 24-month resource plan. DEM, Universidade de Aveiro (2026/2027).
           </p>
         </div>
         <div class="footer-col">
@@ -314,7 +287,7 @@
         <div class="footer-col">
           <h3>Consortium</h3>
           <ul>
-            <li><a href="#roles">§1.9 Member Roles</a></li>
+            <li><a href="#roles">§1.9 Group Contributions</a></li>
             <li><a href="#resources">§5.1 Resource Plan</a></li>
             <li><a href="#complementarity">§5.2 Complementarity</a></li>
             <li><a href="state-of-the-art.html">State of the Art</a></li>
@@ -337,7 +310,7 @@
           <span class="footer-author-name"><a href="https://github.com/gabriel-t-ribeiro" target="_blank" rel="noopener noreferrer">Gabriel Ribeiro</a></span>
         </div>
         <div class="footer-meta">
-          MagLink R&amp;D Consortium &middot; <a href="state-of-the-art.html#references">19 Verified References</a> &middot; Last updated: Nov&nbsp;2026
+          MagLink R&amp;D Consortium &middot; <a href="state-of-the-art.html#references">22 Verified References</a> &middot; Last updated: Nov&nbsp;2026
         </div>
       </div>
     </div>
